@@ -1,6 +1,7 @@
 package main
-import "fmt"
+import "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/router"
 
-func main(){
-	fmt.Println("Hello World!")
+func main() {
+	app := routes.Routes();
+	app.Listen(":3000")
 }
