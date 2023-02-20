@@ -2,21 +2,149 @@ module github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend
 
 go 1.19
 
+require github.com/gofiber/fiber/v2 v2.42.0
+
 require (
+	github.com/AndreasBriese/bbloom v0.0.0-20190825152654-46b345b51c96 // indirect
+	github.com/OWASP/Amass v2.6.0+incompatible // indirect
+	github.com/OWASP/Amass/v3 v3.21.2 // indirect
+	github.com/PuerkitoBio/goquery v1.8.0 // indirect
+	github.com/VividCortex/gohistogram v1.0.0 // indirect
+	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/gofiber/fiber/v2 v2.42.0 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
+	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
+	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/boltdb/bolt v1.3.1 // indirect
+	github.com/caffix/netmap v0.0.0-20220914054450-df95cd3987ae // indirect
+	github.com/caffix/pipeline v0.2.0 // indirect
+	github.com/caffix/queue v0.1.4-0.20221117050542-621305ceff1f // indirect
+	github.com/caffix/resolve v0.6.18 // indirect
+	github.com/caffix/service v0.2.4-0.20220914052955-87095f01d576 // indirect
+	github.com/caffix/stringset v0.1.1-0.20220914051654-14e33fbe8739 // indirect
+	github.com/cayleygraph/cayley v0.7.7-0.20220304214302-275a7428fb10 // indirect
+	github.com/cayleygraph/quad v1.2.4 // indirect
+	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/chromedp/cdproto v0.0.0-20220428002153-285dfb42699c // indirect
+	github.com/chromedp/chromedp v0.8.0 // indirect
+	github.com/chromedp/sysutil v1.0.0 // indirect
+	github.com/cjoudrey/gluaurl v0.0.0-20161028222611-31cbb9bef199 // indirect
+	github.com/cloudflare/cloudflare-go v0.49.0 // indirect
+	github.com/cnf/structhash v0.0.0-20201127153200-e1b16c1ebc08 // indirect
+	github.com/corpix/uarand v0.2.0 // indirect
+	github.com/dennwc/base v1.0.0 // indirect
+	github.com/dghubble/go-twitter v0.0.0-20220816163853-8a0df96f1e6d // indirect
+	github.com/dghubble/sling v1.4.0 // indirect
+	github.com/dgraph-io/badger v1.6.2 // indirect
+	github.com/dgraph-io/ristretto v0.1.1 // indirect
+	github.com/dsnet/compress v0.0.1 // indirect
+	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/geziyor/geziyor v0.0.0-20220429000531-738852f9321d // indirect
+	github.com/go-ini/ini v1.67.0 // indirect
+	github.com/go-kit/kit v0.12.0 // indirect
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/gobuffalo/logger v1.0.7 // indirect
+	github.com/gobuffalo/packd v1.0.2 // indirect
+	github.com/gobuffalo/packr/v2 v2.8.3 // indirect
+	github.com/gobwas/httphead v0.1.0 // indirect
+	github.com/gobwas/pool v0.2.1 // indirect
+	github.com/gobwas/ws v1.1.0 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/golang/glog v1.0.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
+	github.com/gorilla/css v1.0.0 // indirect
+	github.com/hako/durafmt v0.0.0-20210316092057-3a2c319c1acd // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
+	github.com/hidal-go/hidalgo v0.0.0-20190814174001-42e03f3b5eaa // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
+	github.com/joeguo/tldextract v0.0.0-20220507100122-d83daa6adef8 // indirect
+	github.com/josharian/intern v1.0.0 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/karrick/godirwalk v1.17.0 // indirect
 	github.com/klauspost/compress v1.15.15 // indirect
+	github.com/lib/pq v1.10.7 // indirect
+	github.com/logrusorgru/aurora v2.0.3+incompatible // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/markbates/errx v1.1.0 // indirect
+	github.com/markbates/oncer v1.0.0 // indirect
+	github.com/markbates/safe v1.0.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
+	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
+	github.com/mholt/archiver v3.1.1+incompatible // indirect
+	github.com/microcosm-cc/bluemonday v1.0.21 // indirect
+	github.com/miekg/dns v1.1.50 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/nwaples/rardecode v1.1.0 // indirect
 	github.com/philhofer/fwd v1.1.2 // indirect
+	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/projectdiscovery/blackrock v0.0.0-20220628111055-35616c71b2dc // indirect
+	github.com/projectdiscovery/cdncheck v0.0.3 // indirect
+	github.com/projectdiscovery/chaos-client v0.3.0 // indirect
+	github.com/projectdiscovery/dnsx v1.1.1 // indirect
+	github.com/projectdiscovery/fileutil v0.0.3 // indirect
+	github.com/projectdiscovery/goflags v0.1.3 // indirect
+	github.com/projectdiscovery/gologger v1.1.5-0.20220817095646-8663411b1b0b // indirect
+	github.com/projectdiscovery/httputil v0.0.0-20210906072657-f3a099cb20bc // indirect
+	github.com/projectdiscovery/iputil v0.0.0-20220712175312-b9406f31cdd8 // indirect
+	github.com/projectdiscovery/mapcidr v1.0.1 // indirect
+	github.com/projectdiscovery/ratelimit v0.0.1 // indirect
+	github.com/projectdiscovery/retryabledns v1.0.15 // indirect
+	github.com/projectdiscovery/retryablehttp-go v1.0.2 // indirect
+	github.com/projectdiscovery/sliceutil v0.0.0-20220625085859-c3a4ecb669f4 // indirect
+	github.com/projectdiscovery/stringsutil v0.0.2 // indirect
+	github.com/projectdiscovery/subfinder/v2 v2.5.5 // indirect
+	github.com/prometheus/client_golang v1.13.0 // indirect
+	github.com/prometheus/client_model v0.2.0 // indirect
+	github.com/prometheus/common v0.37.0 // indirect
+	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
+	github.com/rogpeppe/go-internal v1.9.0 // indirect
+	github.com/rs/xid v1.4.0 // indirect
+	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/savsgio/dictpool v0.0.0-20221023140959-7bf2e61cea94 // indirect
 	github.com/savsgio/gotils v0.0.0-20230208104028-c358bd845dee // indirect
+	github.com/sirupsen/logrus v1.9.0 // indirect
+	github.com/spf13/cobra v1.5.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/temoto/robotstxt v1.1.2 // indirect
 	github.com/tinylib/msgp v1.1.8 // indirect
+	github.com/tomnomnom/linkheader v0.0.0-20180905144013-02ca5825eb80 // indirect
+	github.com/tylertreat/BoomFilters v0.0.0-20210315201527-1a82519a3e43 // indirect
+	github.com/ulikunitz/xz v0.5.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.44.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
+	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
+	github.com/yl2chen/cidranger v1.0.2 // indirect
+	github.com/yuin/gopher-lua v0.0.0-20220504180219-658193537a64 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
+	go.uber.org/ratelimit v0.2.0 // indirect
+	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
+	golang.org/x/mod v0.7.0 // indirect
+	golang.org/x/net v0.4.0 // indirect
+	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1 // indirect
+	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/term v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
+	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
+	golang.org/x/tools v0.4.0 // indirect
+	google.golang.org/appengine v1.6.7 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
+	gopkg.in/djherbis/times.v1 v1.2.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+	layeh.com/gopher-json v0.0.0-20201124131017-552bb3c4c3bf // indirect
 )

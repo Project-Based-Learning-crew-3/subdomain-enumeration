@@ -1,12 +1,12 @@
 package routes
+
 import (
-	"github.com/gofiber/fiber/v2"
 	"github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/controller"
+	"github.com/gofiber/fiber/v2"
 )
 
-
-func Routes() *fiber.App{
-	 router := fiber.New()
+func Routes() *fiber.App {
+	router := fiber.New()
 
 	//  /*/*/ CORS /*/*/*/
 	//  router.Use(cors.New(cors.Config{
@@ -18,6 +18,7 @@ func Routes() *fiber.App{
 
 	// routes
 	router.Get("/", controller.Controller)
-	
+	router.Post("/findsubdomains", controller.Findsubdomains)
+
 	return router
 }
