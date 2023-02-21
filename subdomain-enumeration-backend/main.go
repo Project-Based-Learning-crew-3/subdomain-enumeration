@@ -4,5 +4,5 @@ import routes "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-ba
 
 func main() {
 	app := routes.Routes()
-	app.Listen(":3000")
+	app.Listen(":3001")
 }

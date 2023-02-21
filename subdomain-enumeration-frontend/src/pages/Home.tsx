@@ -3,11 +3,8 @@ import SearchBar from "../components/SearchBar";
 import "./home.css";
 
 const Home = () => {
-
   return (
     <div className="header-container">
-
-
       <div className="home-title">
         <h1>
           Say
@@ -18,12 +15,15 @@ const Home = () => {
         </h1>
       </div>
 
-
       <p className="below-header pcol2">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, harum consequatur, ipsam, odit commodi aut magni Lorem ipsum dolor sit, amet consectetur adipisicing.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, harum
+        consequatur, ipsam, odit commodi aut
       </p>
 
-      <p className="below-header pcol1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, praesentium?Lorem ipsum dolor sit amet.</p>
+      <p className="below-header pcol1">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
+        praesentium?Lorem ipsum dolor sit amet.
+      </p>
 
       <SearchBar />
     </div>

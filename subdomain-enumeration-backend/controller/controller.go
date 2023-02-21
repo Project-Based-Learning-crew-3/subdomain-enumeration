@@ -1,15 +1,17 @@
 package controller
 
 import (
+	"fmt"
+
 	enumeration "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/helpers"
 	"github.com/gofiber/fiber/v2"
 )
 
-type Subdomain struct {
-	Subdomain string `json:"subdomain"`
+type Domain struct {
+	Domain string `json:"domain"`
 }
 type Data struct {
-	Data enumeration.Subdomains `json:"data"`
+	Data enumeration.Subdomains `json:"subdomains"`
 }
 
 func Controller(c *fiber.Ctx) error {
@@ -19,7 +21,8 @@ func Controller(c *fiber.Ctx) error {
 }
 
 func Findsubdomains(c *fiber.Ctx) error {
-	var subdomain Subdomain
-	c.BodyParser(&subdomain)
-	return c.JSON(Data{enumeration.Enumeration(subdomain.Subdomain)})
+	var domain Domain
+	c.BodyParser(&domain)
+	fmt.Println(domain.Domain)
+	return c.JSON(Data{enumeration.Enumeration(domain.Domain)})
 }
