@@ -9,7 +9,9 @@ const Home = () => {
   return (
     <>
     <div>
-        <h1>Say goodbye to  cli </h1>
+        <h1 style={{
+          color: 'white'
+        }}>Say goodbye to  cli </h1>
     </div>
       {/* <SearchBar /> */}
     </>
