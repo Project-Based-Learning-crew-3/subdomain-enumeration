@@ -1,0 +1,33 @@
+*
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-color: black;
+}
+
+input:focus {
+    outline: none;
+}
+
+input{
+    border: 1px solid #fff;
+    border-radius: 21.27px;
+    background-color: black;
+    position: relative;
+    width: 353px;
+    height: 60.61px;
+}
+
+h1{
+    /* background-color: #f3ec78; */
+}
+
+input::after{
+/* content:"../assets/search.svg" ; */
+position: absolute;
+}
