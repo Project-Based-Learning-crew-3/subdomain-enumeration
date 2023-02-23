@@ -1,8 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { getLogo } from "../helpers/getCompanyLogo";
 
 const SearchBar = () => {
   const [domain, setDomain] = React.useState<string>("");
+  const navigate = useNavigate();
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -13,13 +16,20 @@ const SearchBar = () => {
   };
 
   const getSubdomains = async (domain: string) => {
-    const response = await axios.post(
-      process.env.REACT_APP_API_URL + "findsubdomains" || "",
-      {
-        domain: domain,
-      }
-    );
-    console.log(response);
+    // const response = await axios.post(
+    //   process.env.REACT_APP_API_URL + "findsubdomains" || "",
+    //   {
+    //     domain: domain,
+    //   }
+    // );
+    // console.log(response);
+
+    // if (response.status === 200) {
+    if (domain !== "") {
+      getLogo(domain);
+      navigate("/dashboard");
+    }
+    // }
   };
 
   return (
@@ -34,6 +44,7 @@ const SearchBar = () => {
           placeholder="Enter a domain name"
           className="domain-input"
         />
+
         <svg
           onClick={() => {
             getSubdomains(domain);

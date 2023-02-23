@@ -17,12 +17,12 @@ const Home = () => {
 
       <p className="below-header pcol2">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, harum
-        consequatur, ipsam, odit commodi aut
+        consequatur, ipsam,
       </p>
 
       <p className="below-header pcol1">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
-        praesentium?Lorem ipsum dolor sit amet.
+        praesentium?Lorem ipsum dolor sit amet
       </p>
 
       <SearchBar />

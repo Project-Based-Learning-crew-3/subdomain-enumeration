@@ -6,7 +6,7 @@ const Dashboard = () => {
     <div style={{
         color: 'white'
     }}>
-        <h1>Subdomains <br></br> found {subdomainsFound} </h1>
+        <h2>Subdomains <br></br> found {subdomainsFound} </h2>
         <div className="StatusCode">
             <h2>200 {}</h2>
             <h2>300 {}</h2>
