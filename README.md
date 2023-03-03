@@ -12,18 +12,19 @@ This is a simple GUI tool that allows penetration testers to efficiently find th
   First clone the repository using [git](https://git-scm.com/)
 ```sh
 git clone https://github.com/Project-Based-Learning-crew-3/subdomain-enumeration.git
+
+cd subdomain-enumeration-backend/
 ```
 
 Then install all the dependencies for backend
-```sh
-cd subdomain-enumeration-backend/
+```go
 go get
 ```
 
 > if u encounter command 'go' not found, install [go](https://go.dev/dl/) 
 
 Now run the backend server using 
-```sh
+```go
 go run main.go
 ```
 The go server will be running on port 3000
