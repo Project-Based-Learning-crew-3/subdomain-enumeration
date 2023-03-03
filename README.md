@@ -2,7 +2,7 @@
 This is a simple GUI tool that allows penetration testers to efficiently find the vulnerable subdomains of a given main domain
 <br></br>
 ## Features
-- enumerate multiple all possible subdomains 
+- enumerate all possible subdomains of a given domain 
 - filter subdomains based on status codes and various parameters
 - Allow users to export subdomains in various formats such as text, json, table 
 <br></br>
