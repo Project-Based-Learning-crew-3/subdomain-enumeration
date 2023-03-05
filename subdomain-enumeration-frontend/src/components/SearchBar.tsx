@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getLogo } from "../helpers/getCompanyLogo";
 
-const SearchBar = () => {
-  const [domain, setDomain] = React.useState<string>("");
+const SearchBar = ({
+  setLoading,
+  setEnteredDomain,
+}: {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setEnteredDomain: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  const [domain, setDomain] = useState<string>("");
   const navigate = useNavigate();
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       console.log("enter press here! ");
       getSubdomains(domain);
+      setEnteredDomain(domain);
+      setLoading(true);
       setDomain("");
     }
   };
 
   const getSubdomains = async (domain: string) => {
-    // const response = await axios.post(
-    //   process.env.REACT_APP_API_URL + "findsubdomains" || "",
-    //   {
-    //     domain: domain,
-    //   }
-    // );
-    // console.log(response);
+    const response = await axios.post(
+      process.env.REACT_APP_API_URL + "/findsubdomains" || "",
+      {
+        domain: domain,
+      }
+    );
+    console.log(response);
 
-    // if (response.status === 200) {
-    if (domain !== "") {
-      getLogo(domain);
-      navigate("/dashboard");
+    if (response.status === 200) {
+      if (domain !== "") {
+        getLogo(domain);
+        setLoading(false);
+        navigate("/dashboard");
+      }
     }
-    // }
   };
 
   return (
@@ -47,6 +56,8 @@ const SearchBar = () => {
 
         <svg
           onClick={() => {
+            setEnteredDomain(domain);
+            setLoading(true);
             getSubdomains(domain);
             setDomain("");
           }}

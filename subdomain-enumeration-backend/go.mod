@@ -2,7 +2,10 @@ module github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend
 
 go 1.19
 
-require github.com/gofiber/fiber/v2 v2.42.0
+require (
+	github.com/gofiber/fiber/v2 v2.42.0
+	github.com/projectdiscovery/subfinder/v2 v2.5.5
+)
 
 require (
 	github.com/AndreasBriese/bbloom v0.0.0-20190825152654-46b345b51c96 // indirect
@@ -104,7 +107,6 @@ require (
 	github.com/projectdiscovery/retryablehttp-go v1.0.2 // indirect
 	github.com/projectdiscovery/sliceutil v0.0.0-20220625085859-c3a4ecb669f4 // indirect
 	github.com/projectdiscovery/stringsutil v0.0.2 // indirect
-	github.com/projectdiscovery/subfinder/v2 v2.5.5 // indirect
 	github.com/prometheus/client_golang v1.13.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect

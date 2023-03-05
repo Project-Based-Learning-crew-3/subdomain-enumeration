@@ -23,3 +23,36 @@ body {
   color: none;
   background: none;
 }
+
+
+.font-gradient{
+  background-image: linear-gradient(
+    110deg,
+    rgba(172, 195, 25, 0.99) 0%,
+    #46933e 63.02%,
+    rgba(7, 68, 7, 0.70) 100%
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+
+@media screen and (max-width: 768px) {
+  .loading-animation{
+    width: 300px !important;
+      height: 300px !important;
+  }
+  .loading-container{
+    margin-top: 7rem !important;
+    display: "flex";
+    flex-direction: "column";
+    align-items: "center";
+    justify-content: "center";
+  }
+  .loading-text{
+    font-size: 25px !important;
+    padding: 1rem !important;
+  }
+}

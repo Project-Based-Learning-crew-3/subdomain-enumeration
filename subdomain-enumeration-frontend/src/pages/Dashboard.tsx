@@ -1,6 +1,6 @@
 import React from 'react'
 
-let subdomainsFound;
+let subdomainsFound: number = 0;
 const Dashboard = () => {
   return (
     <div style={{
@@ -8,13 +8,13 @@ const Dashboard = () => {
     }}>
         <h2>Subdomains <br></br> found {subdomainsFound} </h2>
         <div className="StatusCode">
-            <table style={{
+            {/* <table style={{
               width:"100%"
             }}>
                 <th>200 {}</th>
                 <th>300 {}</th>
                 <th>400 {}</th>
-            </table>
+            </table> */}
             <button type="submit" style={{
               width:"20%",
               border:"10% solid gray",
