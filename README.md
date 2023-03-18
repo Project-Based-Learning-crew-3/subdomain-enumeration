@@ -3,8 +3,9 @@ This is a simple GUI tool that allows penetration testers to efficiently find th
 <br></br>
 ## Features
 - enumerate all possible subdomains of a given domain 
-- filter subdomains based on status codes and various parameters
+- filter subdomains based on [status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) and functionality
 - Allow users to export subdomains in various formats such as text, json, table 
+- Take screenshots of subdomains
 <br></br>
 ## Usage
 
@@ -12,7 +13,9 @@ This is a simple GUI tool that allows penetration testers to efficiently find th
   First clone the repository using [git](https://git-scm.com/)
 ```sh
 git clone https://github.com/Project-Based-Learning-crew-3/subdomain-enumeration.git
-
+```
+Then navigate to backend directory
+```sh
 cd subdomain-enumeration-backend/
 ```
 
