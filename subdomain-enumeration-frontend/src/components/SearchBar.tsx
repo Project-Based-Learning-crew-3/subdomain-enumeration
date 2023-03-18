@@ -30,6 +30,7 @@ const SearchBar = ({
   // api request to get subdomains
   const getSubdomainData = async (domain: string) => {
     const response = await getSubdomains(domain);
+    console.log(response);
     setSubDomains(response?.data?.subdomains);
 
     if (response.status === 200) {

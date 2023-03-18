@@ -1,13 +1,10 @@
 import React from "react";
 import kctLogo from "../assets/kct.svg";
 import pieChart from "../assets/pieChart.svg";
-import { UseSubdomainContext } from "../context/UseSubdomainContext";
+import Table from "../components/Table";
 
 let subdomainsFound: number = 0;
 const Dashboard = () => {
-  const { subdomains } = UseSubdomainContext();
-
-  console.log(subdomains);
   return (
     <div
       style={{
@@ -18,7 +15,7 @@ const Dashboard = () => {
         padding: "4rem",
       }}
     >
-      <img src={kctLogo} alt="logo" width="300px" height="300px" />
+      {/* <img src={kctLogo} alt="logo" width="300px" height="300px" />
       <h2 style={{ fontSize: "30px", marginLeft: "2rem" }}>
         Subdomains <br></br> found {subdomainsFound}{" "}
       </h2>
@@ -38,7 +35,8 @@ const Dashboard = () => {
         >
           NEXT
         </button>
-      </div>
+      </div> */}
+      <Table />
     </div>
   );
 };
