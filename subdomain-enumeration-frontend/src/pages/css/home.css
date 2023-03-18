@@ -78,6 +78,13 @@ svg {
   max-width: 500px;
 }
 
+.dashboardTitle{
+  background-image: linear-gradient(90deg, #CC2B5E 0%, #753A88 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
 /* header slide animation on page load */
 @keyframes slideInFromLeft {
   0% {
