@@ -26,6 +26,7 @@ func subfinder(url string) Subdomains {
 		ResultCallback: func(s *resolve.HostEntry) { // Callback function to execute for available host
 			log.Println(s.Host, s.Source)
 		},
+		Verbose: true,
 	})
 
 	buf := bytes.Buffer{}

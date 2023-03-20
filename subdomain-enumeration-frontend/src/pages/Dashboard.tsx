@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import pieChart from "../assets/pieChart.svg";
-import { UseSubdomainContext } from "../context/UseSubdomainContext";
+import Table from "../components/Table";
 
 let subdomainsFound: number = 0;
 const Dashboard = () => {
