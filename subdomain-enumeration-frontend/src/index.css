@@ -57,6 +57,38 @@ table, th, td {
   border-collapse: collapse;
   border-radius: 10px;
 }
+.success{
+  background: linear-gradient(90deg, #FFE000 0%, #799F0C 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+font-size: 1.5rem;
+font-family: "Raleway";
+font-weight:500;
+}
+
+.clientError{
+  background: linear-gradient(90deg, #E65C00 0%, #F9D423 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+font-size : 1.5rem;
+font-family: "Raleway";
+font-weight:500;
+}
+
+.serverError{
+  background: linear-gradient(90deg, #E52D27 0%, #B31217 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+font-size: 1.5rem;
+font-family: "Raleway";
+font-weight:500;
+}
 
 @media screen and (max-width: 768px) {
   .loading-animation{
