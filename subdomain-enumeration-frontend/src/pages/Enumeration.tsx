@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
-import pieChart from "../assets/pieChart.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import share from "../assets/share.svg";
 import Table from "../components/Table";
-{
-}
+import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
+import { useNavigate } from "react-router-dom";
+import { convertToJson } from "../helpers/filterDomains";
+import { Scrollbars } from "react-custom-scrollbars";
+
 const Enumeration = () => {
-  const [currentButton, setCurrentButton] = useState("");
-  // const { subdomains } = UseSubdomainContext();
+  const [currentButton, setCurrentButton] =
+    useState<subdomainDisplayFormat>("TABLE");
+  const { subdomains } = UseSubdomainContext();
+  const [jsonData, setJsonData] = useState([]);
+  const navigate = useNavigate();
 
   const buttonStyle = {
     border: "1.9px solid #ACC319",
@@ -81,24 +86,28 @@ const Enumeration = () => {
         >
           <li>
             <button
-              onClick={() => setCurrentButton("table")}
-              style={currentButton === "table" ? clickedStyle : buttonStyle}
+              onClick={() => setCurrentButton("TABLE")}
+              style={currentButton === "TABLE" ? clickedStyle : buttonStyle}
             >
               Table
             </button>
           </li>
           <li>
             <button
-              onClick={() => setCurrentButton("json")}
-              style={currentButton === "json" ? clickedStyle : buttonStyle}
+              onClick={() => {
+                setCurrentButton("JSON");
+                // setJsonData(convertToJson(subdomains));
+                console.log(jsonData);
+              }}
+              style={currentButton === "JSON" ? clickedStyle : buttonStyle}
             >
               JSON
             </button>
           </li>
           <li>
             <button
-              onClick={() => setCurrentButton("text")}
-              style={currentButton === "text" ? clickedStyle : buttonStyle}
+              onClick={() => setCurrentButton("TEXT")}
+              style={currentButton === "TEXT" ? clickedStyle : buttonStyle}
             >
               Text
             </button>
@@ -117,9 +126,36 @@ const Enumeration = () => {
           justifyContent: "center",
           alignItems: "center",
           marginBlock: "auto",
+          overflowY: "scroll",
         }}
       >
-        <Table />
+        {currentButton === "TABLE" && <Table />}
+        {currentButton === "JSON" && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: "2rem",
+            }}
+          >
+            {subdomains.map((data) => (
+              <div key={data}>{JSON.stringify(data, null, 2)}</div>
+            ))}
+          </div>
+        )}
+        {currentButton === "TEXT" && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {subdomains.map((data) => (
+              <div key={data}>data</div>
+            ))}
+          </div>
+        )}
+        <button onClick={() => navigate("/dashboard")}>Go back</button>
       </div>
 
       {/* share button */}

@@ -11,11 +11,14 @@ type Domain struct {
 	Domain string `json:"domain"`
 }
 type Data struct {
-	Data enumeration.Subdomains `json:"subdomains"`
+	Data []enumeration.SubdomainsWithStatusCodes `json:"subdomains"`
 }
 
 func Controller(c *fiber.Ctx) error {
 	// enumeration.Enumeration("kct.ac.in")
+
+	//We Read the response body on the line below.
+
 	return c.SendString("Hello World2!")
 
 }

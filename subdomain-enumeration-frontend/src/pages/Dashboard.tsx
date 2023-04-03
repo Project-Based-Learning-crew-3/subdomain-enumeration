@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import pieChart from "../assets/pieChart.svg";
 import { useNavigate } from "react-router-dom";
+import { UseSubdomainContext } from "../context/UseSubdomainContext";
 
 let subdomainsFound: number = 0;
 const Dashboard = () => {
@@ -95,6 +96,7 @@ const Dashboard = () => {
         >
           NEXT
         </button>
+        <button onClick={() => navigate("/enumeration")}>Click here</button>
       </div>
     </div>
   );

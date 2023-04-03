@@ -11,13 +11,11 @@ import (
 	"github.com/projectdiscovery/subfinder/v2/pkg/runner"
 )
 
-type Subdomains = []string
-
-func Enumeration(url string) Subdomains {
+func Enumeration(url string) []SubdomainsWithStatusCodes {
 	return subfinder(url)
 }
 
-func subfinder(url string) Subdomains {
+func subfinder(url string) []SubdomainsWithStatusCodes {
 	runnerInstance, err := runner.NewRunner(&runner.Options{
 		Threads:            10,                       // Thread controls the number of threads to use for active enumerations
 		Timeout:            30,                       // Timeout is the seconds to wait for sources to respond
@@ -42,8 +40,8 @@ func subfinder(url string) Subdomains {
 
 	fmt.Printf("%s", data)
 
-	var subdomains Subdomains = strings.Split(string(data), "\n")
+	var subdomains []string = strings.Split(string(data), "\n")
 
-	return subdomains
+	return FindStatusCodes(subdomains)
 
 }
