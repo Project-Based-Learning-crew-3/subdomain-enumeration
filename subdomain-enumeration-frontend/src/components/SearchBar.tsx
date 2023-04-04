@@ -31,7 +31,13 @@ const SearchBar = ({
   const getSubdomainData = async (domain: string) => {
     const response = await getSubdomains(domain);
     console.log(response);
-    setSubDomains(response?.data?.subdomains);
+
+    // sanitizing the subdomains
+    setSubDomains(
+      response?.data?.subdomains
+        ?.map((elem: string, i: number) => elem.trim())
+        .filter((elem: string) => elem !== "")
+    );
 
     if (response.status === 200) {
       if (domain !== "") {
