@@ -16,6 +16,7 @@ func Enumeration(url string) []SubdomainsWithStatusCodes {
 }
 
 func subfinder(url string) []SubdomainsWithStatusCodes {
+
 	runnerInstance, err := runner.NewRunner(&runner.Options{
 		Threads:            10,                       // Thread controls the number of threads to use for active enumerations
 		Timeout:            30,                       // Timeout is the seconds to wait for sources to respond
@@ -41,6 +42,7 @@ func subfinder(url string) []SubdomainsWithStatusCodes {
 	fmt.Printf("%s", data)
 
 	var subdomains []string = strings.Split(string(data), "\n")
+	// Set up httpx client
 
 	return FindStatusCodes(subdomains)
 
