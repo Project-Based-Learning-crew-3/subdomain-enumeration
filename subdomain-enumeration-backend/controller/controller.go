@@ -15,14 +15,15 @@ type Data struct {
 }
 
 func Controller(c *fiber.Ctx) error {
+
 	// enumeration.Enumeration("kct.ac.in")
 
 	//We Read the response body on the line below.
+	// lib.ScreenshotPath("https://kct.ac.in", "kct.png")
 
 	return c.SendString("Hello World2!")
 
 }
-
 func Findsubdomains(c *fiber.Ctx) error {
 	var domain Domain
 	c.BodyParser(&domain)
