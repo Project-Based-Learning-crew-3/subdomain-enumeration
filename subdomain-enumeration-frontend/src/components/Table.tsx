@@ -4,7 +4,7 @@ import { UseSubdomainContext } from "../context/UseSubdomainContext";
 const Table = () => {
   const { subdomains } = UseSubdomainContext();
   return (
-    <div style={{ width: "80%", height: "80%"}}>
+    <div style={{ width: "80%", height: "80%" }}>
       <table
         style={{
           color: "white",
@@ -20,13 +20,13 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {subdomains?.map((subdomain,index) => (
+          {subdomains?.map((data, index) => (
             <tr key={index} style={{ height: "40px" }}>
-              <td>{index+1}</td>
+              <td>{index + 1}</td>
               <td style={{ padding: "20px" }}>
-                <a href={`https://${subdomain}`}>{subdomain?.subdomain}</a>
+                <a href={`https://${data}`}>{data}</a>
               </td>
-              <td>{subdomain?.statusCode}</td>
+              <td>{data}</td>
             </tr>
           ))}
         </tbody>

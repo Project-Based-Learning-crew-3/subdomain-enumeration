@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import {ReactComponent as Share} from "../assets/Share.svg";
+import { ReactComponent as Share } from "../assets/share.svg";
 import Table from "../components/Table";
 import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { convertToJson } from "../helpers/filterDomains";
 import { Scrollbars } from "react-custom-scrollbars";
 
 const Enumeration = () => {
-  const[downloadBtn,setDownloadBtn]=useState(false);
+  const [downloadBtn, setDownloadBtn] = useState(false);
   const [currentButton, setCurrentButton] =
     useState<subdomainDisplayFormat>("TABLE");
   const { subdomains } = UseSubdomainContext();
@@ -60,7 +60,8 @@ const Enumeration = () => {
     color: "white",
     fontSize: "18px",
     cursor: "pointer",
-    filter:"invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
+    filter:
+      "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)",
   };
   return (
     <div
@@ -142,7 +143,7 @@ const Enumeration = () => {
         style={{
           color: "white",
           height: "400px",
-          width:"300%",
+          width: "300%",
           maxWidth: "300%",
           backgroundColor: "rgb(10,10,10)",
           borderRadius: "25px",
@@ -163,8 +164,8 @@ const Enumeration = () => {
             }}
           >
             {"{"}
-            {subdomains?.map((data,index) => (
-              <div key={data.subdomain}>{JSON.stringify(data, null, 2)}</div>
+            {subdomains?.map((data, index) => (
+              <div key={data}>{JSON.stringify(data, null, 2)}</div>
             ))}
             {"}"}
           </div>
@@ -177,7 +178,7 @@ const Enumeration = () => {
             }}
           >
             {subdomains?.map((data) => (
-              <div key={data.subdomain}>data</div>
+              <div key={data}>data</div>
             ))}
           </div>
         )}
@@ -186,14 +187,23 @@ const Enumeration = () => {
 
       {/* share button */}
       <div style={{ position: "absolute", top: "55rem", right: "12%" }}>
-        <button onMouseOver={()=>setDownloadBtn(true)} onMouseOut={()=>setDownloadBtn(false)} style={downloadBtn?downloadStyle:download}>
-        <Share fill={downloadBtn?"#000000":"invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"}/>
+        <button
+          onMouseOver={() => setDownloadBtn(true)}
+          onMouseOut={() => setDownloadBtn(false)}
+          style={downloadBtn ? downloadStyle : download}
+        >
+          <Share
+            fill={
+              downloadBtn
+                ? "#000000"
+                : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
+            }
+          />
           {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}
         </button>
       </div>
     </div>
   );
 };
-
 
 export default Enumeration;

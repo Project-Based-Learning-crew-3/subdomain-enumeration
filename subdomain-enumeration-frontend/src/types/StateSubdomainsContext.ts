@@ -1,6 +1,6 @@
 export interface StateSubdomainsContext {
-    subdomains : subdomainWithStatusCode[] | null;
-    setSubDomains : (subdomains : subdomainWithStatusCode[]) => void;
+    subdomains : string[] | null;
+    setSubDomains : (subdomains : string[]) => void;
 }
 
 export type subdomainWithStatusCode={
