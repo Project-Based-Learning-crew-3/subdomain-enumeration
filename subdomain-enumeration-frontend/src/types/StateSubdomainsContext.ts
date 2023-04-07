@@ -1,8 +1,12 @@
 export interface StateSubdomainsContext {
-    subdomains : string[];
-    setSubDomains : (subdomains : string[]) => void;
+    subdomains : subdomainWithStatusCode[] | null;
+    setSubDomains : (subdomains : subdomainWithStatusCode[]) => void;
 }
 
+export type subdomainWithStatusCode={
+    subdomain:string,
+    statusCode:number
+} 
 export enum subdomainDisplayFormatEnum  {
     TABLE,
     JSON,

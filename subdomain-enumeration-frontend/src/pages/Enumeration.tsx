@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import share from "../assets/share.svg";
+import {ReactComponent as Share} from "../assets/Share.svg";
 import Table from "../components/Table";
 import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +49,18 @@ const Enumeration = () => {
     fontSize: "18px",
     cursor: "pointer",
     fill: "black",
+  };
+  const download = {
+    border: "1.9px solid #ACC319",
+    borderRadius: "27.1429px",
+    fontFamily: "Raleway",
+    width: "100px",
+    height: "45px",
+    background: "transparent",
+    color: "white",
+    fontSize: "18px",
+    cursor: "pointer",
+    filter:"invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
   };
   return (
     <div
@@ -150,9 +162,11 @@ const Enumeration = () => {
               padding: "2rem",
             }}
           >
-            {subdomains.map((data) => (
-              <div key={data}>{JSON.stringify(data, null, 2)}</div>
+            {"{"}
+            {subdomains?.map((data,index) => (
+              <div key={data.subdomain}>{JSON.stringify(data, null, 2)}</div>
             ))}
+            {"}"}
           </div>
         )}
         {currentButton === "TEXT" && (
@@ -162,8 +176,8 @@ const Enumeration = () => {
               flexDirection: "column",
             }}
           >
-            {subdomains.map((data) => (
-              <div key={data}>data</div>
+            {subdomains?.map((data) => (
+              <div key={data.subdomain}>data</div>
             ))}
           </div>
         )}
@@ -172,12 +186,14 @@ const Enumeration = () => {
 
       {/* share button */}
       <div style={{ position: "absolute", top: "55rem", right: "12%" }}>
-        <button onMouseOver={()=>setDownloadBtn(true)} onMouseOut={()=>setDownloadBtn(false)} style={downloadBtn?downloadStyle:buttonStyle}>
-          <img src={share} alt="share" style={{ cursor: "pointer"}} />
+        <button onMouseOver={()=>setDownloadBtn(true)} onMouseOut={()=>setDownloadBtn(false)} style={downloadBtn?downloadStyle:download}>
+        <Share fill={downloadBtn?"#000000":"invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"}/>
+          {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}
         </button>
       </div>
     </div>
   );
 };
+
 
 export default Enumeration;

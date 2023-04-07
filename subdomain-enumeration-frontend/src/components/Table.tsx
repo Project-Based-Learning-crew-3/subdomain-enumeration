@@ -20,13 +20,13 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {subdomains.map((subdomain,index) => (
-            <tr key={subdomain} style={{ height: "40px" }}>
+          {subdomains?.map((subdomain,index) => (
+            <tr key={index} style={{ height: "40px" }}>
               <td>{index+1}</td>
               <td style={{ padding: "20px" }}>
-                <a href={`https://${subdomain}`}>{subdomain}</a>
+                <a href={`https://${subdomain}`}>{subdomain?.subdomain}</a>
               </td>
-              <td>200</td>
+              <td>{subdomain?.statusCode}</td>
             </tr>
           ))}
         </tbody>
