@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/controller"
+	enumeration "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/helpers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -22,6 +23,7 @@ func Routes() *fiber.App {
 	// routes
 	router.Get("/", controller.Controller)
 	router.Post("/findsubdomains", controller.Findsubdomains)
+	router.Post("/screenshot", enumeration.TakeScreenshot)
 
 	return router
 }
