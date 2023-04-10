@@ -10,7 +10,7 @@ export const subdomainContext = createContext<StateSubdomainsContext>({
 });
 
 export const SubdomainProvider = ({ children }: { children: ReactNode }) => {
-  const [subdomains, setSubDomains] = useState<string[]>([]);
+  const [subdomains, setSubDomains] = useState<subdomainWithStatusCode[]>([]);
   return (
     <subdomainContext.Provider value={{ subdomains, setSubDomains }}>
       {children}

@@ -33,11 +33,7 @@ const SearchBar = ({
     console.log(response);
 
     // sanitizing the subdomains
-    setSubDomains(
-      response?.data?.subdomains
-        ?.map((elem: any, i: number) => elem?.subdomain.trim())
-        .filter((elem: any) => elem.subdomain !== "")
-    );
+    setSubDomains(response?.data?.subdomains);
 
     if (response.status === 200) {
       if (domain !== "") {

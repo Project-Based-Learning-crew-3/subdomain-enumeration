@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import { ReactComponent as Share } from "../assets/share.svg";
+import { ReactComponent as Share } from "../assets/Share.svg";
 import Table from "../components/Table";
 import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
@@ -161,12 +161,21 @@ const Enumeration = () => {
               display: "flex",
               flexDirection: "column",
               padding: "2rem",
+              width: "80%",
+              height: "80%",
+              lineHeight: "1.75",
+              fontFamily: "raleway",
             }}
           >
-            {"{"}
-            {subdomains?.map((data, index) => (
-              <div key={data}>{JSON.stringify(data, null, 2)}</div>
+            <div style={{ display: "block" }}>{"{"}</div>
+            {'"subdomain" = ['}
+            {subdomains?.map((data, i) => (
+              <div key={i}>{JSON.stringify(data.subdomain, null, 2)},</div>
             ))}
+            <div style={{ display: "block" }}>
+              <span style={{ visibility: "hidden" }}>lorem</span>
+              {" ]"}
+            </div>
             {"}"}
           </div>
         )}
@@ -175,10 +184,14 @@ const Enumeration = () => {
             style={{
               display: "flex",
               flexDirection: "column",
+              width: "80%",
+              height: "80%",
+              fontFamily: "raleway",
+              lineHeight: "1.75",
             }}
           >
-            {subdomains?.map((data) => (
-              <div key={data}>data</div>
+            {subdomains?.map((data, i) => (
+              <div key={i}>{data.subdomain}</div>
             ))}
           </div>
         )}

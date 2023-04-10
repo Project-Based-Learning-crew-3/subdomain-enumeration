@@ -10,6 +10,7 @@ const Table = () => {
           color: "white",
           fontFamily: "Raleway",
           width: "100%",
+          textAlign: "center",
         }}
       >
         <thead>
@@ -24,9 +25,9 @@ const Table = () => {
             <tr key={index} style={{ height: "40px" }}>
               <td>{index + 1}</td>
               <td style={{ padding: "20px" }}>
-                <a href={`https://${data}`}>{data}</a>
+                <a href={`https://${data.subdomain}`}>{data.subdomain}</a>
               </td>
-              <td>{data}</td>
+              <td>{data.statuscode}</td>
             </tr>
           ))}
         </tbody>
