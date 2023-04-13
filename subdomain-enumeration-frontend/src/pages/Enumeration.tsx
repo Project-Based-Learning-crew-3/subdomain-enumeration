@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import { ReactComponent as Share } from "../assets/Share.svg";
+import { ReactComponent as Share } from "../assets/share.svg";
 import Table from "../components/Table";
 import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
 import { convertToJson } from "../helpers/filterDomains";
 import { Scrollbars } from "react-custom-scrollbars";
+import { saveAs } from "file-saver";
+import Blob from "blob";
 
 const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
@@ -21,6 +23,44 @@ const Enumeration = () => {
     }
   }, []);
   const navigate = useNavigate();
+  let isText = currentButton === "TEXT";
+  let isJson = currentButton === "JSON";
+  let isTable = currentButton === "TABLE";
+
+  function downloadFile() {
+    let csv = isTable ? exportToCsv() : "";
+    let textData = isText && subdomains?.map((s) => s.subdomain).join("\n");
+
+    const data = isText
+      ? `${textData}`
+      : isJson
+      ? JSON.stringify(subdomains)
+      : csv;
+    const blob = new Blob([data], {
+      type: `${
+        isText ? "text/plain" : isJson ? "application/json" : "text/csv"
+      };charset=utf-8`,
+    });
+    saveAs(
+      blob,
+      isText ? "subdomains.txt" : isJson ? "subdomains.json" : "subdomains.csv"
+    );
+  }
+
+  const exportToCsv = () => {
+    // Headers for each column
+    let headers = ["subdomain,status code"];
+
+    // Convert users data to a csv
+    let subdomainsCsv = subdomains?.reduce((acc: any[], data) => {
+      const { subdomain, statuscode } = data;
+      acc.push([subdomain, statuscode].join(","));
+      return acc;
+    }, []);
+
+    const csvData = [...headers, ...(subdomainsCsv || [])].join("\n");
+    return csvData;
+  };
 
   const buttonStyle = {
     border: "1.9px solid #ACC319",
@@ -185,7 +225,25 @@ const Enumeration = () => {
             {"}"}
           </div>
         )}
-        {currentButton === "TEXT" && (
+        {currentButton === "TEXT" && ( // const exportToCsv = e => {
+          //   e.preventDefault()
+
+          //   // Headers for each column
+          //   let headers = ['Id,Name,Surname,Age']
+
+          //   // Convert users data to a csv
+          //   let usersCsv = usersData.users.reduce((acc, user) => {
+          //     const { id, name, surname, age } = user
+          //     acc.push([id, name, surname, age].join(','))
+          //     return acc
+          //   }, [])
+
+          //   downloadFile({
+          //     data: [...headers, ...usersCsv].join('\n'),
+          //     fileName: 'users.csv',
+          //     fileType: 'text/csv',
+          //   })
+          // }
           <div
             style={{
               display: "flex",
@@ -212,6 +270,7 @@ const Enumeration = () => {
           style={downloadBtn ? downloadStyle : download}
         >
           <Share
+            onClick={downloadFile}
             fill={
               downloadBtn
                 ? "#000000"

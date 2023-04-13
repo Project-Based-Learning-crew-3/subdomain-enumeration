@@ -8,7 +8,9 @@ require (
 )
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.1 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/bytedance/sonic v1.8.7 // indirect
