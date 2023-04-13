@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import screenshot from "../assets/screenshot.svg";
 
-let subdomainsFound: number = 0;
 const Dashboard = () => {
   const navigate = useNavigate();
   const { subdomains } = UseSubdomainContext();
@@ -40,14 +39,14 @@ const Dashboard = () => {
             <h2
               className="dashboardTitle"
               style={{
-                fontSize: "58px",
+                fontSize: "96px",
                 marginLeft: "2rem",
                 fontFamily: "Raleway",
                 fontWeight: "500",
                 marginBottom: "0px",
               }}
             >
-              Subdomains <br></br> found {subdomainsFound}{" "}
+              Subdomains <br></br> found {subdomains?.length}{" "}
             </h2>
           </div>
           <div
@@ -76,18 +75,24 @@ const Dashboard = () => {
       </div>
 
       <div className="StatusCode">
-        <a href="#"><button type = "submit" style={{backgroundColor:"#ACC319",
-        borderRadius:"50%",
-        height:"50px",
-        width:"52px",
-        position:"absolute",
-        right:"50px",
-        left:"1025px",
-        bottom:"60px"
-  }}>
-  <img src={screenshot} alt="screenshot Button"/>
-  </button></a>
-<button
+        <a href="#">
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "#ACC319",
+              borderRadius: "50%",
+              height: "50px",
+              width: "52px",
+              position: "absolute",
+              right: "50px",
+              left: "1025px",
+              bottom: "60px",
+            }}
+          >
+            <img src={screenshot} alt="screenshot Button" />
+          </button>
+        </a>
+        <button
           type="submit"
           style={{
             width: "7%",

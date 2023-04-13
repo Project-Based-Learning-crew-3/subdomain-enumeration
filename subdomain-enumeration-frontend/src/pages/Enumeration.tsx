@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import { ReactComponent as Share } from "../assets/Share.svg";
@@ -12,8 +12,14 @@ const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
   const [currentButton, setCurrentButton] =
     useState<subdomainDisplayFormat>("TABLE");
-  const { subdomains } = UseSubdomainContext();
+  const { subdomains, setSubDomains } = UseSubdomainContext();
   const [jsonData, setJsonData] = useState([]);
+  useEffect(() => {
+    const data = JSON?.parse(localStorage?.getItem("subdomains")!);
+    if (data) {
+      setSubDomains(data);
+    }
+  }, []);
   const navigate = useNavigate();
 
   const buttonStyle = {
@@ -98,7 +104,7 @@ const Enumeration = () => {
             marginBottom: "3rem",
           }}
         >
-          Subdomains found 40
+          Subdomains found {subdomains?.length}
         </h2>
         <ul
           style={{

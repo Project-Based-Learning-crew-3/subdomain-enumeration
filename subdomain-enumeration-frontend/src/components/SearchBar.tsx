@@ -39,6 +39,10 @@ const SearchBar = ({
       if (domain !== "") {
         getLogo(domain);
         setLoading(false);
+        localStorage.setItem(
+          "subdomains",
+          JSON.stringify(response?.data?.subdomains)
+        );
         navigate("/dashboard");
       }
     }

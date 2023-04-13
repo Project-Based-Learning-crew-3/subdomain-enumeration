@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 
 const Table = () => {
-  const { subdomains } = UseSubdomainContext();
+  const { subdomains, setSubDomains } = UseSubdomainContext();
+  useEffect(() => {
+    const data = JSON?.parse(localStorage?.getItem("subdomains")!);
+    if (data) {
+      setSubDomains(data);
+    }
+  }, []);
   return (
     <div style={{ width: "80%", height: "80%" }}>
       <table
