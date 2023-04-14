@@ -4,6 +4,8 @@ import pieChart from "../assets/pieChart.svg";
 import { useNavigate } from "react-router-dom";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import screenshot from "../assets/screenshot.svg";
+//graphing module
+import { VictoryPie } from "victory";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -14,6 +16,17 @@ const Dashboard = () => {
     serverErr: 0,
   });
   console.log(subdomains);
+
+  //To count number of 200,400,500 status codes
+  subdomains?.map((stat) => {
+    if (stat.statuscode >= 200 && stat.statuscode < 300) {
+      statusCode.success++;
+    } else if (stat.statuscode >= 400 && stat.statuscode < 500) {
+      statusCode.userErr++;
+    } else {
+      statusCode.serverErr++;
+    }
+  });
   return (
     <div style={{ position: "relative" }}>
       <div
@@ -70,7 +83,16 @@ const Dashboard = () => {
         </div>
 
         <div>
-          <img src={pieChart} alt="" />
+          {/*dynamic graph*/}
+          <VictoryPie
+            colorScale={["green", "orange", "red"]}
+            data={[
+              { x: "200", y: statusCode.success },
+              { x: "400", y: statusCode.userErr },
+              { x: "500", y: statusCode.serverErr },
+            ]}
+          />
+          {/* <img src={pieChart} alt="" /> */}
         </div>
       </div>
 

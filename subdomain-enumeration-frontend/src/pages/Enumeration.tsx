@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import { ReactComponent as Share } from "../assets/share.svg";
+import { ReactComponent as Share } from "../assets/Share.svg";
 import Table from "../components/Table";
 import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
