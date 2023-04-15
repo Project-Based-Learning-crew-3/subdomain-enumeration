@@ -18,7 +18,7 @@ const Dashboard = () => {
   console.log(subdomains);
 
   //To count number of 200,400,500 status codes
-  subdomains?.map((stat) => {
+  subdomains?.forEach((stat) => {
     if (stat.statuscode >= 200 && stat.statuscode < 300) {
       statusCode.success++;
     } else if (stat.statuscode >= 400 && stat.statuscode < 500) {
@@ -85,7 +85,7 @@ const Dashboard = () => {
         <div>
           {/*dynamic graph*/}
           <VictoryPie
-            colorScale={["green", "orange", "red"]}
+            colorScale={["tomato", "orange", "gold"]}
             data={[
               { x: "200", y: statusCode.success },
               { x: "400", y: statusCode.userErr },
