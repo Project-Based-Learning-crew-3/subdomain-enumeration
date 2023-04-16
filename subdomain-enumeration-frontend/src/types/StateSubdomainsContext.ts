@@ -1,17 +1,24 @@
-export interface StateSubdomainsContext {
-    subdomains : subdomainWithStatusCode[] | null;
-    setSubDomains : (subdomains : subdomainWithStatusCode[]) => void;
+export interface TStateSubdomainsContext {
+    subdomains : TsubdomainWithStatusCode[] |  null;
+    setSubDomains : (subdomains : TsubdomainWithStatusCode[]) => void;
 }
 
-export type subdomainWithStatusCode={
+// export type Tstate = {domain:string,subdomains:TsubdomainWithStatusCode[]}[]
+
+export type TsubdomainWithStatusCode={
     subdomain:string,
     statuscode:number
 } 
-export enum subdomainDisplayFormatEnum  {
+
+export enum EsubdomainDisplayFormatEnum  {
     TABLE,
     JSON,
     TEXT 
 }   
 
-export type subdomainDisplayFormat = keyof typeof subdomainDisplayFormatEnum;
+export type TsubdomainDisplayFormat = keyof typeof EsubdomainDisplayFormatEnum;
 
+export type TLocalStorageState = {
+    domain:string,
+    subdomains:TsubdomainWithStatusCode[]
+}[]

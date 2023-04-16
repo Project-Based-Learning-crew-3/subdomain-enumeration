@@ -3,7 +3,10 @@ import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import { ReactComponent as Share } from "../assets/share.svg";
 import Table from "../components/Table";
-import { subdomainDisplayFormat } from "../types/StateSubdomainsContext";
+import {
+  TLocalStorageState,
+  TsubdomainDisplayFormat,
+} from "../types/StateSubdomainsContext";
 import { useNavigate } from "react-router-dom";
 import { convertToJson } from "../helpers/filterDomains";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -13,14 +16,21 @@ import Blob from "blob";
 const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
   const [currentButton, setCurrentButton] =
-    useState<subdomainDisplayFormat>("TABLE");
+    useState<TsubdomainDisplayFormat>("TABLE");
   const { subdomains, setSubDomains } = UseSubdomainContext();
   const [jsonData, setJsonData] = useState([]);
+  const data: TLocalStorageState = JSON?.parse(
+    localStorage?.getItem("searchedsubdomains")!
+  );
+  console.log(data);
+
   useEffect(() => {
-    const data = JSON?.parse(localStorage?.getItem("subdomains")!);
-    if (data) {
-      setSubDomains(data);
-    }
+    const data: TLocalStorageState = JSON?.parse(
+      localStorage?.getItem("searchedsubdomains")!
+    );
+    console.log(data);
+
+    setSubDomains(data[data?.length - 1]?.subdomains);
   }, []);
   const navigate = useNavigate();
   let isText = currentButton === "TEXT";
@@ -41,6 +51,10 @@ const Enumeration = () => {
         isText ? "text/plain" : isJson ? "application/json" : "text/csv"
       };charset=utf-8`,
     });
+    saveAs(
+      blob,
+      isText ? "subdomains.txt" : isJson ? "subdomains.json" : "subdomains.csv"
+    );
     saveAs(
       blob,
       isText ? "subdomains.txt" : isJson ? "subdomains.json" : "subdomains.csv"

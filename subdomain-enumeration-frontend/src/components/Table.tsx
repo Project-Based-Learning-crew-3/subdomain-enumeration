@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
+import { TLocalStorageState } from "../types/StateSubdomainsContext";
 
 const Table = () => {
   const { subdomains, setSubDomains } = UseSubdomainContext();
   useEffect(() => {
-    const data = JSON?.parse(localStorage?.getItem("subdomains")!);
-    if (data) {
-      setSubDomains(data);
+    const data: TLocalStorageState = JSON?.parse(
+      localStorage?.getItem("searchedsubdomains")!
+    );
+    if (data.some((s) => s.domain === "")) {
+      setSubDomains(data[data?.length - 1]?.subdomains);
     }
   }, []);
   return (

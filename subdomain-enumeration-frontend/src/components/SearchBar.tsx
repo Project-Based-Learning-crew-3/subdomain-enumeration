@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getLogo } from "../helpers/getCompanyLogo";
 import { getSubdomains } from "../api/getsubdomains";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
+import { TLocalStorageState } from "../types/StateSubdomainsContext";
 
 const SearchBar = ({
   setLoading,
@@ -19,32 +19,79 @@ const SearchBar = ({
   // handling enter key in search bar
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      console.log("enter press here! ");
-      getSubdomainData(domain);
-      setEnteredDomain(domain);
-      setLoading(true);
+      if (!CheckLocalStorageState()) {
+        getSubdomainData(domain);
+        setEnteredDomain(domain);
+        setLoading(true);
+      } else {
+        setEnteredDomain(domain);
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/dashboard");
+        }, 3000);
+      }
       setDomain("");
     }
   };
 
-  // api request to get subdomains
+  const CheckLocalStorageState = () => {
+    const data: TLocalStorageState = JSON?.parse(
+      localStorage?.getItem("searchedsubdomains")!
+    );
+    return data?.some((d) => d.domain === domain);
+  };
+
   const getSubdomainData = async (domain: string) => {
-    const response = await getSubdomains(domain);
-    console.log(response);
+    if (!CheckLocalStorageState()) {
+      const response = await getSubdomains(domain);
+      console.log(response);
 
-    // sanitizing the subdomains
-    setSubDomains(response?.data?.subdomains);
+      // sanitizing the subdomains
+      setSubDomains(response?.data?.subdomains);
 
-    if (response.status === 200) {
-      if (domain !== "") {
-        getLogo(domain);
-        setLoading(false);
-        localStorage.setItem(
-          "subdomains",
-          JSON.stringify(response?.data?.subdomains)
-        );
-        navigate("/dashboard");
+      if (response.status === 200) {
+        if (domain !== "") {
+          getLogo(domain);
+          setLoading(false);
+          let Existingdata = JSON.parse(
+            localStorage?.getItem("searchedsubdomains")!
+          );
+
+          if (Existingdata) {
+            let newLocalStorageState = [
+              ...Existingdata,
+              {
+                domain: response?.data?.domain,
+                subdomains: response?.data?.subdomains,
+              },
+            ];
+
+            localStorage.setItem(
+              "searchedsubdomains",
+              JSON.stringify(newLocalStorageState)
+            );
+          } else {
+            localStorage.setItem(
+              "searchedsubdomains",
+              JSON.stringify([
+                {
+                  domain: response?.data?.domain,
+                  subdomains: response?.data?.subdomains,
+                },
+              ])
+            );
+          }
+
+          navigate("/dashboard");
+        }
       }
+    } else {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/dashboard");
+      }, 3000);
     }
   };
 

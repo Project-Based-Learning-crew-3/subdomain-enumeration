@@ -11,7 +11,8 @@ type Domain struct {
 	Domain string `json:"domain"`
 }
 type Data struct {
-	Data []enumeration.SubdomainsWithStatusCodes `json:"subdomains"`
+	Domain string                                  `json:"domain"`
+	Data   []enumeration.SubdomainsWithStatusCodes `json:"subdomains"`
 }
 
 func Controller(c *fiber.Ctx) error {
@@ -28,5 +29,5 @@ func Findsubdomains(c *fiber.Ctx) error {
 	var domain Domain
 	c.BodyParser(&domain)
 	fmt.Println(domain.Domain)
-	return c.JSON(Data{enumeration.Enumeration(domain.Domain)})
+	return c.JSON(Data{domain.Domain, enumeration.Enumeration(domain.Domain)})
 }

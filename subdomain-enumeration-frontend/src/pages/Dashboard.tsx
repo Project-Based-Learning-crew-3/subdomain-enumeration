@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import kctLogo from "../assets/kct.svg";
 import pieChart from "../assets/pieChart.svg";
 import { useNavigate } from "react-router-dom";
@@ -6,16 +6,30 @@ import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import screenshot from "../assets/screenshot.svg";
 //graphing module
 import { VictoryPie } from "victory";
+import { TLocalStorageState } from "../types/StateSubdomainsContext";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { subdomains } = UseSubdomainContext();
+  const { subdomains, setSubDomains } = UseSubdomainContext();
   const [statusCode, setStatusCode] = useState({
     success: 0,
     userErr: 0,
     serverErr: 0,
   });
+
   console.log(subdomains);
+  const data: TLocalStorageState = JSON?.parse(
+    localStorage?.getItem("searchedsubdomains")!
+  );
+  console.log(subdomains);
+
+  useEffect(() => {
+    const data: TLocalStorageState = JSON?.parse(
+      localStorage?.getItem("searchedsubdomains")!
+    );
+    console.log(subdomains);
+    setSubDomains(data[data?.length - 1]?.subdomains);
+  }, []);
 
   //To count number of 200,400,500 status codes
   subdomains?.forEach((stat) => {
@@ -27,6 +41,7 @@ const Dashboard = () => {
       statusCode.serverErr++;
     }
   });
+
   return (
     <div style={{ position: "relative" }}>
       <div
