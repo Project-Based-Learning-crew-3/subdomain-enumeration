@@ -12,6 +12,7 @@ import { convertToJson } from "../helpers/filterDomains";
 import { Scrollbars } from "react-custom-scrollbars";
 import { saveAs } from "file-saver";
 import Blob from "blob";
+import copy from "../assets/copy.svg";
 
 const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
@@ -23,6 +24,14 @@ const Enumeration = () => {
     localStorage?.getItem("searchedsubdomains")!
   );
   console.log(data);
+
+  const copyTextToClipboard = (type: "TEXT" | "JSON") => {
+    let copydata: string =
+      type === "TEXT"
+        ? `${subdomains?.map((s) => s.subdomain).join("\n")}`
+        : "{\nsubdomains:" + JSON.stringify(subdomains) + "\n}";
+    navigator.clipboard.writeText(copydata);
+  };
 
   useEffect(() => {
     const data: TLocalStorageState = JSON?.parse(
@@ -203,8 +212,8 @@ const Enumeration = () => {
         style={{
           color: "white",
           height: "400px",
-          width: "300%",
-          maxWidth: "300%",
+          width: "200%",
+          maxWidth: "200%",
           backgroundColor: "rgb(10,10,10)",
           borderRadius: "25px",
           display: "flex",
@@ -225,9 +234,17 @@ const Enumeration = () => {
               height: "80%",
               lineHeight: "1.75",
               fontFamily: "raleway",
+              fontSize: "20px",
             }}
           >
-            <div style={{ display: "block" }}>{"{"}</div>
+            <img
+              src={copy}
+              alt="copy"
+              className="copy"
+              onClick={() => copyTextToClipboard("JSON")}
+            />
+
+            <div style={{ display: "block", fontSize: "20px" }}>{"{"}</div>
             {'"subdomain" = ['}
             {subdomains?.map((data, i) => (
               <div key={i}>{JSON.stringify(data.subdomain, null, 2)},</div>
@@ -258,8 +275,10 @@ const Enumeration = () => {
           //     fileType: 'text/csv',
           //   })
           // }
+
           <div
             style={{
+              fontSize: "20px",
               display: "flex",
               flexDirection: "column",
               width: "80%",
@@ -268,6 +287,13 @@ const Enumeration = () => {
               lineHeight: "1.75",
             }}
           >
+            <img
+              src={copy}
+              alt="copy"
+              className="copy"
+              onClick={() => copyTextToClipboard("TEXT")}
+            />
+
             {subdomains?.map((data, i) => (
               <div key={i}>{data.subdomain}</div>
             ))}
@@ -283,14 +309,22 @@ const Enumeration = () => {
           onMouseOut={() => setDownloadBtn(false)}
           style={downloadBtn ? downloadStyle : download}
         >
-          <Share
-            onClick={downloadFile}
-            fill={
-              downloadBtn
-                ? "#000000"
-                : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
-            }
-          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Share
+              onClick={downloadFile}
+              fill={
+                downloadBtn
+                  ? "#000000"
+                  : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
+              }
+            />
+          </div>
           {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}
         </button>
       </div>

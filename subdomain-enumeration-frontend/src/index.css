@@ -45,6 +45,15 @@ ul{
 a{
   color: white;
 }
+
+img.copy{
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 40px !important;
+  height: 40px !important;
+}
 .font-gradient2{
   background: linear-gradient(90deg, #CC2B5E 0%, #753A88 100%);
 -webkit-background-clip: text;
