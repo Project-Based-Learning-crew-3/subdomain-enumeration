@@ -4,7 +4,7 @@ This is a simple GUI tool that allows penetration testers to efficiently find th
 ## Features
 - enumerate all possible subdomains of a given domain 
 - filter subdomains based on [status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) and functionality
-- Allow users to export subdomains in various formats such as text, json, table 
+- Allow users to export subdomains in various formats such as text, json, csv 
 - Take screenshots of subdomains
 <br></br>
 ## Usage
@@ -40,7 +40,7 @@ cd subdomain-enumeration-frontend/
 ```
 install all the dependencies for react
 ```sh
-npm install
+npm install --force
 ```
 After installing the dependencies run
 ```sh
