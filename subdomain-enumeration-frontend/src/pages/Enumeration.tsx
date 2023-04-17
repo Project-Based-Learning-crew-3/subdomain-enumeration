@@ -13,6 +13,8 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { saveAs } from "file-saver";
 import Blob from "blob";
 import copy from "../assets/copy.svg";
+import arrowup from "../assets/arrowup.svg";
+import tick from "../assets/tick.svg";
 
 const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
@@ -20,6 +22,7 @@ const Enumeration = () => {
     useState<TsubdomainDisplayFormat>("TABLE");
   const { subdomains, setSubDomains } = UseSubdomainContext();
   const [jsonData, setJsonData] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
   const data: TLocalStorageState = JSON?.parse(
     localStorage?.getItem("searchedsubdomains")!
   );
@@ -38,8 +41,9 @@ const Enumeration = () => {
       localStorage?.getItem("searchedsubdomains")!
     );
     console.log(data);
-
-    setSubDomains(data[data?.length - 1]?.subdomains);
+    if (data.length > 0) {
+      setSubDomains(data[data?.length - 1]?.subdomains);
+    }
   }, []);
   const navigate = useNavigate();
   let isText = currentButton === "TEXT";
@@ -221,8 +225,10 @@ const Enumeration = () => {
           alignItems: "center",
           marginBlock: "auto",
           overflowY: "scroll",
+          position: "relative",
         }}
       >
+        {/* <img src={arrowup} className="arrowup" alt="arrowup" /> */}
         {currentButton === "TABLE" && <Table />}
         {currentButton === "JSON" && (
           <div
@@ -237,45 +243,45 @@ const Enumeration = () => {
               fontSize: "20px",
             }}
           >
-            <img
-              src={copy}
-              alt="copy"
-              className="copy"
-              onClick={() => copyTextToClipboard("JSON")}
-            />
+            {isCopied ? (
+              <>
+                <img src={tick} alt="tick" className="tick" />
+              </>
+            ) : (
+              <img
+                src={copy}
+                alt="copy"
+                className="copy"
+                onClick={() => {
+                  setIsCopied(true);
 
-            <div style={{ display: "block", fontSize: "20px" }}>{"{"}</div>
-            {'"subdomain" = ['}
+                  setTimeout(() => {
+                    setIsCopied(false);
+                  }, 2000);
+                  copyTextToClipboard("JSON");
+                }}
+              />
+            )}
+            <div style={{ display: "block", fontSize: "30px" }}>{"{"}</div>
+            {'"subdomain"  '}
+            <span style={{ fontSize: "30px", display: "contents" }}>
+              {" = ["}
+            </span>
             {subdomains?.map((data, i) => (
               <div key={i}>{JSON.stringify(data.subdomain, null, 2)},</div>
             ))}
             <div style={{ display: "block" }}>
               <span style={{ visibility: "hidden" }}>lorem</span>
-              {" ]"}
+              <span style={{ fontSize: "30px", display: "contents" }}>
+                {" ]"}
+              </span>
             </div>
-            {"}"}
+            <span style={{ fontSize: "30px", display: "contents" }}>
+              {" }"}
+            </span>
           </div>
         )}
-        {currentButton === "TEXT" && ( // const exportToCsv = e => {
-          //   e.preventDefault()
-
-          //   // Headers for each column
-          //   let headers = ['Id,Name,Surname,Age']
-
-          //   // Convert users data to a csv
-          //   let usersCsv = usersData.users.reduce((acc, user) => {
-          //     const { id, name, surname, age } = user
-          //     acc.push([id, name, surname, age].join(','))
-          //     return acc
-          //   }, [])
-
-          //   downloadFile({
-          //     data: [...headers, ...usersCsv].join('\n'),
-          //     fileName: 'users.csv',
-          //     fileType: 'text/csv',
-          //   })
-          // }
-
+        {currentButton === "TEXT" && (
           <div
             style={{
               fontSize: "20px",

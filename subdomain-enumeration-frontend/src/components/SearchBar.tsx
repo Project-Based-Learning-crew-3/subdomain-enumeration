@@ -26,6 +26,22 @@ const SearchBar = ({
       } else {
         setEnteredDomain(domain);
         setLoading(true);
+        const data: TLocalStorageState = JSON?.parse(
+          localStorage?.getItem("searchedsubdomains")!
+        );
+
+        let index: number = 0;
+
+        data.forEach((d, n) => {
+          if (d.domain === domain) {
+            index = n;
+          }
+        });
+
+        // pushing the searched domain to the end of the array
+        data.push(data.splice(index, 1)[0]);
+
+        localStorage.setItem("searchedsubdomains", JSON.stringify(data));
         setTimeout(() => {
           setLoading(false);
           navigate("/dashboard");

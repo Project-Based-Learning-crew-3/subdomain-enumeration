@@ -32,7 +32,7 @@ const Table = () => {
         <tbody>
           {subdomains?.map((data, index) => (
             <tr key={index} style={{ height: "40px" }}>
-              <td>{index + 1}</td>
+              <td style={{ fontSize: "22px" }}>{index + 1}</td>
               <td style={{ padding: "20px" }}>
                 <a
                   href={`https://${data.subdomain}`}
