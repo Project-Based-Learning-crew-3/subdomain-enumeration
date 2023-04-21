@@ -168,7 +168,8 @@ const Enumeration = () => {
             display: "flex",
             flexDirection: "column",
             marginRight: "5rem",
-            marginBottom: "3rem",
+            marginTop: "12px",
+            marginBottom: "2px",
           }}
         >
           Subdomains found {subdomains?.length}
@@ -179,6 +180,7 @@ const Enumeration = () => {
             flexDirection: "row",
             gap: "2rem",
             paddingLeft: 0,
+            marginTop: "14px",
           }}
         >
           <li>
@@ -216,8 +218,8 @@ const Enumeration = () => {
         style={{
           color: "white",
           height: "400px",
-          width: "200%",
-          maxWidth: "200%",
+          width: "300%",
+          maxWidth: "300%",
           backgroundColor: "rgb(10,10,10)",
           borderRadius: "25px",
           display: "flex",
@@ -305,34 +307,40 @@ const Enumeration = () => {
             ))}
           </div>
         )}
-        <button onClick={() => navigate("/dashboard")}>Go back</button>
-      </div>
-
-      {/* share button */}
-      <div style={{ position: "absolute", top: "55rem", right: "12%" }}>
-        <button
-          onMouseOver={() => setDownloadBtn(true)}
-          onMouseOut={() => setDownloadBtn(false)}
-          style={downloadBtn ? downloadStyle : download}
+        {/* share button */}
+        <div
+          style={{
+            position: "sticky",
+            top: "21rem",
+            paddingBottom: "1rem",
+            right: "0.25%",
+            marginLeft: "30px",
+          }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+          <button
+            onMouseOver={() => setDownloadBtn(true)}
+            onMouseOut={() => setDownloadBtn(false)}
+            style={downloadBtn ? downloadStyle : download}
           >
-            <Share
-              onClick={downloadFile}
-              fill={
-                downloadBtn
-                  ? "#000000"
-                  : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
-              }
-            />
-          </div>
-          {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}
-        </button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Share
+                onClick={downloadFile}
+                fill={
+                  downloadBtn
+                    ? "#000000"
+                    : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
+                }
+              />
+            </div>
+            {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}
+          </button>
+        </div>
       </div>
     </div>
   );

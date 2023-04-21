@@ -74,10 +74,12 @@ const Dashboard = () => {
                   className="dashboardTitle"
                   style={{
                     fontSize: "96px",
-                    marginLeft: "2rem",
+                    // marginLeft: "2rem",
                     fontFamily: "Raleway",
                     fontWeight: "500",
+                    marginTop: "1.4rem",
                     marginBottom: "0px",
+                    marginRight: "12rem",
                   }}
                 >
                   Subdomains <br></br> found {subdomains?.length}{" "}
@@ -88,22 +90,28 @@ const Dashboard = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "flex-start",
-                  marginLeft: "2rem",
+                  // marginLeft: "2rem",
                 }}
               >
                 <div style={{ paddingRight: "1.5rem" }}>
-                  <p className="success">2xx-{statusCode.success}</p>
+                  <p className="success" style={{ marginTop: "0rem" }}>
+                    2xx-{statusCode.success}
+                  </p>
                 </div>
                 <div style={{ paddingRight: "1.5rem" }}>
-                  <p className="clientError">4xx-{statusCode.userErr}</p>
+                  <p className="clientError" style={{ marginTop: "0rem" }}>
+                    4xx-{statusCode.userErr}
+                  </p>
                 </div>
                 <div style={{ paddingRight: "1.5rem" }}>
-                  <p className="serverError">5xx-{statusCode.serverErr}</p>
+                  <p className="serverError" style={{ marginTop: "0rem" }}>
+                    5xx-{statusCode.serverErr}
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div>
+            <div style={{ marginBottom: "-2.5rem" }}>
               {/*dynamic graph*/}
               <VictoryPie
                 colorScale={["tomato", "gold", "cyan"]}
@@ -122,25 +130,8 @@ const Dashboard = () => {
           </div>
 
           <div className="StatusCode">
-            <a href="#">
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: "#ACC319",
-                  borderRadius: "50%",
-                  height: "50px",
-                  width: "52px",
-                  position: "absolute",
-                  right: "50px",
-                  left: "1025px",
-                  bottom: "60px",
-                }}
-              >
-                <img src={screenshot} alt="screenshot Button" />
-              </button>
-            </a>
             <button
-              type="submit"
+              onClick={() => navigate("/enumeration")}
               style={{
                 width: "7%",
                 border: "10% solid gray",
@@ -153,14 +144,13 @@ const Dashboard = () => {
                 textAlign: "center",
                 color: "#000000",
                 position: "absolute",
-                bottom: "60px",
+                bottom: "90px",
                 right: "10px",
                 left: "1100px",
               }}
             >
               NEXT
             </button>
-            <button onClick={() => navigate("/enumeration")}>Click here</button>
           </div>
         </div>
       )}

@@ -24,13 +24,9 @@ const Home = () => {
           </div>
 
           <p className="below-header pcol2">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime,
-            harum consequatur, ipsam,
-          </p>
-
-          <p className="below-header pcol1">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Blanditiis, praesentium?Lorem ipsum dolor sit amet
+            We believe that safe and secure internet is a fundamental right. We
+            help people realise this goal by building easy to use and efficient
+            tools, Try it now!
           </p>
 
           <SearchBar
