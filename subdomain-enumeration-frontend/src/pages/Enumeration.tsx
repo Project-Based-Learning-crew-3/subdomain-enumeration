@@ -306,6 +306,7 @@ const Enumeration = () => {
           </div>
         )}
         <button onClick={() => navigate("/dashboard")}>Go back</button>
+        {/* <button onClick={() => navigate("/detail/1")}>click here 2</button> */}
       </div>
 
       {/* share button */}

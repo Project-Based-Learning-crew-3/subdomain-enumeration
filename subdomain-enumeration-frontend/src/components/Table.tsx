@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import { TLocalStorageState } from "../types/StateSubdomainsContext";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Table = () => {
   const { subdomains, setSubDomains } = UseSubdomainContext();
+  const navigate = useNavigate();
   useEffect(() => {
     const data: TLocalStorageState = JSON?.parse(
       localStorage?.getItem("searchedsubdomains")!
@@ -34,12 +36,12 @@ const Table = () => {
             <tr key={index} style={{ height: "40px" }}>
               <td style={{ fontSize: "22px" }}>{index + 1}</td>
               <td style={{ padding: "20px" }}>
-                <a
-                  href={`https://${data.subdomain}`}
+                <NavLink
+                  to={`/detail/${index + 1}`}
                   style={{ fontSize: "20px" }}
                 >
                   {data.subdomain}
-                </a>
+                </NavLink>
               </td>
               <td style={{ fontSize: "20px" }}>{data.statuscode}</td>
             </tr>

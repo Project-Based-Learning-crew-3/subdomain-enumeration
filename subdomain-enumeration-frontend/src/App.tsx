@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Enumeration from "./pages/Enumeration";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/enumeration" element={<Enumeration />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </Router>
   );

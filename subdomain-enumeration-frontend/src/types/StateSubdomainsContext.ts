@@ -1,5 +1,5 @@
 export interface TStateSubdomainsContext {
-    subdomains : TsubdomainWithStatusCode[] |  null;
+    subdomains : TsubdomainWithStatusCode[];
     setSubDomains : (subdomains : TsubdomainWithStatusCode[]) => void;
 }
 
@@ -7,7 +7,8 @@ export interface TStateSubdomainsContext {
 
 export type TsubdomainWithStatusCode={
     subdomain:string,
-    statuscode:number
+    statuscode:number,
+    screenshot:string
 } 
 
 export enum EsubdomainDisplayFormatEnum  {
