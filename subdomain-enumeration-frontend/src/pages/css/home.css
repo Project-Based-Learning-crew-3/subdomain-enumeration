@@ -33,13 +33,15 @@ input:focus {
 }
 
 .search-container {
-  position: relative !important;
+  position: absolute !important;
+  margin-left:39.5rem;
+  margin-top: 25rem;
 }
 
 .search {
-  position: absolute !important;
+  position: relative !important;
   top: 10px;
-  right: 545px;
+  left: -60px;
 }
 
 input {
