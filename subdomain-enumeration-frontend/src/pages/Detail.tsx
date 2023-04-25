@@ -10,7 +10,7 @@ import {
 import download from "../assets/download.svg";
 
 const Detail = () => {
-  const { id } = useParams();
+  const { subdomain } = useParams();
   const { subdomains, setSubDomains } = UseSubdomainContext();
   const [links, setLinks] = useState<string[]>([]);
   const [base64data, setBase64Data] = useState<string>("");
@@ -18,11 +18,13 @@ const Detail = () => {
   const [headers, setHeaders] = useState<any>({});
   const navigate = useNavigate();
 
-  let reqSubDomain = subdomains[(id as any) - 1];
+  let reqSubDomain = subdomains?.find(
+    (s) => s?.subdomain === (subdomain as string)
+  );
   // console.log(reqSubDomain?.subdomain);
 
   useEffect(() => {
-    findAllLinks(reqSubDomain?.subdomain)
+    findAllLinks(reqSubDomain?.subdomain || "")
       .then((res) => {
         setLinks(res?.data?.links);
         // console.log(res.data);
@@ -31,7 +33,7 @@ const Detail = () => {
         console.log(err);
       });
 
-    getHeaders(reqSubDomain?.subdomain)
+    getHeaders(reqSubDomain?.subdomain || "")
       .then((res) => {
         setHeaders(res?.data?.headers);
       })
@@ -95,7 +97,7 @@ const Detail = () => {
 
           setBase64Data(base64);
           let newArrWithSs = subdomains.map((s) => {
-            if (s.subdomain === reqSubDomain.subdomain) {
+            if (s.subdomain === reqSubDomain?.subdomain) {
               return { ...s, screenshot: base64 };
             } else {
               return s;
@@ -218,6 +220,7 @@ const Detail = () => {
           height: "600px",
           overflowY: "scroll",
           width: "600px",
+          // overflowX: "hidden",
 
           // display: "flex",
           // justifyContent: "flex-start",
@@ -231,10 +234,10 @@ const Detail = () => {
         </div>
         {Object.keys(headers).map((key) => (
           <div key={key}>
-            <h3 style={{ fontSize: "25px" }}>{key} :</h3>
-            <ul>
+            <h3 style={{ fontSize: "25px", fontWeight: "bold" }}>{key} :</h3>
+            <ul style={{ padding: 0 }}>
               {headers[key].map((item: any) => (
-                <li style={{ color: "gray" }} key={item}>
+                <li style={{ color: "white" }} key={item}>
                   {item}
                 </li>
               ))}

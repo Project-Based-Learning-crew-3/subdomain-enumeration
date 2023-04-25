@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import { TLocalStorageState } from "../types/StateSubdomainsContext";
-import { NavLink, useNavigate } from "react-router-dom";
+import {
+  TLocalStorageState,
+  TsubdomainWithStatusCode,
+} from "../types/StateSubdomainsContext";
+import { Link, useNavigate } from "react-router-dom";
+import { buttonStyle, clickedStyle } from "../pages/Enumeration";
 
 const Table = () => {
   const { subdomains, setSubDomains } = UseSubdomainContext();
+  const [filter, setFilter] = useState<TsubdomainWithStatusCode[]>([]);
+  const [currBtn, setCurrBtn] = useState<"ALL" | "2xx" | "4xx" | "5xx">("ALL");
   const navigate = useNavigate();
   useEffect(() => {
+    setFilter(subdomains);
     const data: TLocalStorageState = JSON?.parse(
       localStorage?.getItem("searchedsubdomains")!
     );
@@ -16,6 +23,124 @@ const Table = () => {
   }, []);
   return (
     <div style={{ width: "80%", height: "80%" }}>
+      <div
+        style={{
+          marginBottom: "2rem",
+          display: "flex",
+          gap: "1rem",
+        }}
+      >
+        <span
+          style={{ color: "white", fontSize: "25px", fontFamily: "Raleway" }}
+        >
+          Filters :
+        </span>
+        <button
+          style={
+            currBtn === "ALL"
+              ? {
+                  ...clickedStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+              : {
+                  ...buttonStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+          }
+          onClick={() => {
+            setFilter(subdomains);
+            setCurrBtn("ALL");
+          }}
+        >
+          all
+        </button>
+        <button
+          onClick={() => {
+            setFilter((prev) =>
+              subdomains.filter(
+                (s) => s.statuscode >= 200 && s.statuscode < 300
+              )
+            );
+            setCurrBtn("2xx");
+          }}
+          style={
+            currBtn === "2xx"
+              ? {
+                  ...clickedStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+              : {
+                  ...buttonStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+          }
+        >
+          2xx
+        </button>
+        <button
+          onClick={() => {
+            setFilter((prev) =>
+              subdomains.filter(
+                (s) => s.statuscode >= 400 && s.statuscode < 500
+              )
+            );
+            setCurrBtn("4xx");
+          }}
+          style={
+            currBtn === "4xx"
+              ? {
+                  ...clickedStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+              : {
+                  ...buttonStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+          }
+        >
+          4xx
+        </button>
+        <button
+          onClick={() => {
+            setFilter((prev) =>
+              subdomains.filter(
+                (s) => s.statuscode >= 500 && s.statuscode < 600
+              )
+            );
+            setCurrBtn("5xx");
+          }}
+          style={
+            currBtn === "5xx"
+              ? {
+                  ...clickedStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+              : {
+                  ...buttonStyle,
+                  borderRadius: "15px",
+                  width: "65px",
+                  height: "35px",
+                }
+          }
+        >
+          5xx
+        </button>
+      </div>
+
       <table
         style={{
           color: "white",
@@ -32,20 +157,24 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {subdomains?.map((data, index) => (
-            <tr key={index} style={{ height: "40px" }}>
-              <td style={{ fontSize: "22px" }}>{index + 1}</td>
-              <td style={{ padding: "20px" }}>
-                <NavLink
-                  to={`/detail/${index + 1}`}
-                  style={{ fontSize: "20px" }}
-                >
-                  {data.subdomain}
-                </NavLink>
-              </td>
-              <td style={{ fontSize: "20px" }}>{data.statuscode}</td>
-            </tr>
-          ))}
+          {filter.length > 0 ? (
+            filter?.map((data, index) => (
+              <tr key={index} style={{ height: "40px" }}>
+                <td style={{ fontSize: "22px" }}>{index + 1}</td>
+                <td style={{ padding: "20px" }}>
+                  <Link
+                    to={`/detail/${data.subdomain}`}
+                    style={{ fontSize: "20px" }}
+                  >
+                    {data.subdomain}
+                  </Link>
+                </td>
+                <td style={{ fontSize: "20px" }}>{data.statuscode}</td>
+              </tr>
+            ))
+          ) : (
+            <>No subdomains with the specified status code</>
+          )}
         </tbody>
       </table>
     </div>

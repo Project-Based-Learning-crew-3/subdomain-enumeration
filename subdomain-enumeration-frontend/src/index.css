@@ -40,11 +40,20 @@ html{
 .scrollbar::-webkit-scrollbar-thumb{
   width: 0.5rem;
   border-radius: 5px;
-
   background-color: gray;
 }
 
+.scrollbar::-webkit-scrollbar-corner{
+  /* background-color: black !important; */
+  visibility: hidden;
+}
 
+.scrollbar::-webkit-scrollbar-thumb:horizontal{
+  visibility: hidden;
+}
+.scrollbar::-webkit-scrollbar:horizontal{
+  visibility: hidden;
+}
 
 
 

@@ -16,6 +16,30 @@ import copy from "../assets/copy.svg";
 import arrowup from "../assets/arrowup.svg";
 import tick from "../assets/tick.svg";
 
+export const buttonStyle = {
+  border: "1.9px solid #ACC319",
+  borderRadius: "27.1429px",
+  fontFamily: "Raleway",
+  width: "100px",
+  height: "45px",
+  background: "transparent",
+  color: "white",
+  fontSize: "18px",
+  cursor: "pointer",
+};
+
+export const clickedStyle = {
+  backgroundColor: "rgb(172, 195, 25)",
+  border: "1.9px solid #ACC319",
+  borderRadius: "27.1429px",
+  fontFamily: "Raleway",
+  width: "100px",
+  height: "45px",
+  fontSize: "18px",
+  cursor: "pointer",
+  color: "black",
+};
+
 const Enumeration = () => {
   const [downloadBtn, setDownloadBtn] = useState(false);
   const [currentButton, setCurrentButton] =
@@ -89,29 +113,6 @@ const Enumeration = () => {
     return csvData;
   };
 
-  const buttonStyle = {
-    border: "1.9px solid #ACC319",
-    borderRadius: "27.1429px",
-    fontFamily: "Raleway",
-    width: "100px",
-    height: "45px",
-    background: "transparent",
-    color: "white",
-    fontSize: "18px",
-    cursor: "pointer",
-  };
-
-  const clickedStyle = {
-    backgroundColor: "rgb(172, 195, 25)",
-    border: "1.9px solid #ACC319",
-    borderRadius: "27.1429px",
-    fontFamily: "Raleway",
-    width: "100px",
-    height: "45px",
-    fontSize: "18px",
-    cursor: "pointer",
-    color: "black",
-  };
   const downloadStyle = {
     backgroundColor: "rgb(172, 195, 25)",
     border: "1.9px solid #ACC319",
