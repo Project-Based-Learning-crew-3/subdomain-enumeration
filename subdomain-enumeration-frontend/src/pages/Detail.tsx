@@ -1,26 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { getScreenshot } from "../api/getsubdomains";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { findAllLinks, getHeaders } from "../api/getsubdomains";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import axios from "axios";
 import {
   TLocalStorageState,
   TsubdomainWithStatusCode,
 } from "../types/StateSubdomainsContext";
+import download from "../assets/download.svg";
 
 const Detail = () => {
   const { id } = useParams();
   const { subdomains, setSubDomains } = UseSubdomainContext();
+  const [links, setLinks] = useState<string[]>([]);
   const [base64data, setBase64Data] = useState<string>("");
+  const [domain, setDomain] = useState<string>("");
+  const [headers, setHeaders] = useState<any>({});
+  const navigate = useNavigate();
 
   let reqSubDomain = subdomains[(id as any) - 1];
-  console.log(reqSubDomain?.subdomain);
+  // console.log(reqSubDomain?.subdomain);
 
-  console.log(subdomains);
+  useEffect(() => {
+    findAllLinks(reqSubDomain?.subdomain)
+      .then((res) => {
+        setLinks(res?.data?.links);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    getHeaders(reqSubDomain?.subdomain)
+      .then((res) => {
+        setHeaders(res?.data?.headers);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  let btnStyle: any = {
+    backgroundColor: "rgb(172, 195, 25)",
+    border: "1.9px solid rgb(172, 195, 25)",
+    borderRadius: "27.1429px",
+    fontFamily: "Raleway",
+    width: "100px",
+    height: "35px",
+    fontSize: "18px",
+    cursor: "pointer",
+    color: "black",
+    marginTop: "1rem",
+  };
+  let downloadBtnStyle: any = {
+    backgroundColor: "rgb(172, 195, 25)",
+    border: "1.9px solid rgb(172, 195, 25)",
+    borderRadius: "10px",
+    fontFamily: "Raleway",
+    // width: "100px",
+    height: "45px",
+    fontSize: "18px",
+    cursor: "pointer",
+    color: "black",
+    marginTop: "1rem",
+    // padding: "1rem",
+  };
+
+  // console.log(subdomains);
   useEffect(() => {
     const data: TLocalStorageState = JSON?.parse(
       localStorage?.getItem("searchedsubdomains")!
     );
+    setDomain(data[data?.length - 1]?.domain);
     // console.log(data);
     if (data.length > 0) {
       setSubDomains(data[data?.length - 1]?.subdomains);
@@ -67,26 +118,151 @@ const Detail = () => {
     }
   }, []);
 
-  console.log(base64data);
+  // console.log(base64data);
   // console.log(id);
   return (
-    <>
+    <div
+      // className="dark-bg"
+      style={{
+        background: "rgb(10,10,10)",
+        paddingLeft: "1rem",
+        paddingTop: "2rem",
+        paddingBottom: "1rem",
+        margin: "3rem",
+        display: "flex",
+        justifyContent: "space-between",
+        borderRadius: "15px",
+        // overflowX: "scroll",
+      }}
+    >
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          borderRadius: "25px",
         }}
       >
+        {/* <h2 style={{ color: "white" }}>{reqSubDomain?.subdomain}</h2> */}
         <img
-          style={{ width: "1000px" }}
+          style={{ width: "900px" }}
           src={`data:image/png;base64,${base64data}`}
           alt="screenshot"
         />
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "900px",
+            marginTop: "1rem",
+          }}
+        >
+          <div>
+            <p
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "20px",
+                fontFamily: "Raleway",
+              }}
+            >
+              URL : https://{reqSubDomain?.subdomain}
+            </p>
+
+            <a
+              href={`data:image/png;base64,${base64data}`}
+              download={`${reqSubDomain?.subdomain}.png`}
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <button style={downloadBtnStyle}>
+                <span>Download image </span>
+                <img
+                  src={download}
+                  alt="d"
+                  style={{ width: "16px", marginTop: "2px" }}
+                />
+              </button>
+            </a>
+          </div>
+          <button
+            onClick={() => {
+              window.open(`https://${reqSubDomain?.subdomain}`, "_blank");
+            }}
+            style={btnStyle}
+          >
+            visit url
+          </button>
+        </div>
+
+        {/* <span style={{ color: "white", display: "block" }}>
+          click
+          <a
+            style={{ marginInline: "5px" }}
+            download={`${reqSubDomain?.subdomain}.png`}
+            href={`data:image/png;base64${base64data}`}
+          >
+            here
+          </a>
+          to download the image
+        </span> */}
       </div>
 
       {/* <img src={`data:image/png;base64,${ss}`} alt="" /> */}
-    </>
+
+      <div
+        style={{
+          color: "white",
+          marginRight: "auto",
+          marginLeft: "9rem",
+          fontSize: "25px",
+          height: "600px",
+          overflowY: "scroll",
+          width: "600px",
+
+          // display: "flex",
+          // justifyContent: "flex-start",
+        }}
+        className="scrollbar"
+      >
+        <span style={{ marginBottom: "2rem" }}>URL details :</span>
+        {/* fj */}
+        <div>
+          <p style={{ fontWeight: "bold" }}>Main domain : {domain}</p>
+        </div>
+        {Object.keys(headers).map((key) => (
+          <div key={key}>
+            <h3 style={{ fontSize: "25px" }}>{key} :</h3>
+            <ul>
+              {headers[key].map((item: any) => (
+                <li style={{ color: "gray" }} key={item}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        {/* <ul> */}
+        {/* map over links array and display if it startswith http */}
+        {/* {links?.map((l) =>
+            l?.startsWith("http") ? (
+              <li>
+                <a
+                  href={l}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ fontSize: "20px", color: "white" }}
+                >
+                  {l}
+                </a>
+              </li>
+            ) : (
+              <></>
+            )
+          )}
+        </ul> */}
+        <div></div>
+      </div>
+    </div>
   );
 };
 

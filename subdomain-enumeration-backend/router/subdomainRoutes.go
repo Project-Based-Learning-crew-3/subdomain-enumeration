@@ -1,13 +1,12 @@
 package routes
 
 import (
-	"os"
-
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/controller"
-	enumeration "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/helpers"
+	// enumeration "github.com/Project-Based-Learning-crew-3/subdomain-enumeration-backend/helpers"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -27,9 +26,30 @@ func Routes() *fiber.App {
 	// routes
 	router.Get("/", controller.Controller)
 	router.Post("/findsubdomains", controller.Findsubdomains)
-	router.Post("/screenshot", enumeration.TakeScreenshot)
-	router.Get("/findalllinks", func(c *fiber.Ctx) error {
-		resp, err := http.Get("http://google.com")
+	router.Post("/getheaders", func(c *fiber.Ctx) error {
+		var domain controller.Domain
+		c.BodyParser(&domain)
+		resp, err := http.Head("https://" + domain.Domain)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return nil
+		}
+
+		defer resp.Body.Close()
+
+		headers := resp.Header
+		fmt.Println(headers)
+		return c.JSON(fiber.Map{"headers": headers})
+	})
+
+	router.Post("/findalllinks", func(c *fiber.Ctx) error {
+
+		var domain controller.Domain
+		c.BodyParser(&domain)
+
+		var links []string
+
+		resp, err := http.Get("http://" + domain.Domain)
 		if err != nil {
 			panic(err)
 		}
@@ -45,11 +65,11 @@ func Routes() *fiber.App {
 		doc.Find("a").Each(func(i int, s *goquery.Selection) {
 			href, exists := s.Attr("href")
 			if exists {
-				fmt.Println(href)
+				links = append(links, href)
 			}
 		})
 
-		return c.SendString("test")
+		return c.JSON(fiber.Map{"links": links})
 	})
 
 	return router

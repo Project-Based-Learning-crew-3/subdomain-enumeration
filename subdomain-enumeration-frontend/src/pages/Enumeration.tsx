@@ -229,6 +229,7 @@ const Enumeration = () => {
           overflowY: "scroll",
           position: "relative",
         }}
+        className="scrollbar"
       >
         {/* <img src={arrowup} className="arrowup" alt="arrowup" /> */}
         {currentButton === "TABLE" && <Table />}

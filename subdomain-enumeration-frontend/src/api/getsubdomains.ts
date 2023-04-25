@@ -12,7 +12,7 @@ export const getSubdomains = async (domain: string) => {
     return response;
 }
 // 
-export const getScreenshot = async(subdomain:string) => {
+// export const getScreenshot = async(subdomain:string) => {
   // const response = await axios.get(
     
   //   "https://api.apiflash.com/v1/urltoimage?access_key=50b816ea01e643d096c4e7948539b372&wait_until=page_loaded&url=http://google.com",
@@ -48,5 +48,29 @@ export const getScreenshot = async(subdomain:string) => {
     //         });
     // });
   
+
+// }
+
+
+export const findAllLinks = async (domain: string) => {
+  const response = await axios.post(
+    API_URL + "/findalllinks" || "",
+    {
+      domain: domain,
+    }
+  );    
+  return response;
+
+}
+
+
+export const getHeaders = async (domain: string) => {
+  const response = await axios.post(
+    API_URL + "/getheaders" || "",
+    {
+      domain: domain,
+    }
+  );    
+  return response;
 
 }
