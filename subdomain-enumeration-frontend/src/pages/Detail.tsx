@@ -8,6 +8,9 @@ import {
   TsubdomainWithStatusCode,
 } from "../types/StateSubdomainsContext";
 import download from "../assets/download.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import placeholder from "../assets/blurimg.jpg";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Detail = () => {
   const { subdomain } = useParams();
@@ -21,17 +24,17 @@ const Detail = () => {
   let reqSubDomain = subdomains?.find(
     (s) => s?.subdomain === (subdomain as string)
   );
-  // console.log(reqSubDomain?.subdomain);
+  console.log(reqSubDomain);
 
   useEffect(() => {
-    findAllLinks(reqSubDomain?.subdomain || "")
-      .then((res) => {
-        setLinks(res?.data?.links);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // findAllLinks(reqSubDomain?.subdomain || "")
+    //   .then((res) => {
+    //     setLinks(res?.data?.links);
+    //     // console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
     getHeaders(reqSubDomain?.subdomain || "")
       .then((res) => {
@@ -78,6 +81,7 @@ const Detail = () => {
     if (data.length > 0) {
       setSubDomains(data[data?.length - 1]?.subdomains);
     }
+
     if (reqSubDomain?.screenshot) {
       setBase64Data(reqSubDomain?.screenshot);
     } else {
@@ -143,10 +147,13 @@ const Detail = () => {
         }}
       >
         {/* <h2 style={{ color: "white" }}>{reqSubDomain?.subdomain}</h2> */}
-        <img
-          style={{ width: "900px" }}
+        <LazyLoadImage
           src={`data:image/png;base64,${base64data}`}
           alt="screenshot"
+          height={500}
+          width={900}
+          placeholderSrc={placeholder}
+          effect="opacity"
         />
 
         <div
@@ -232,18 +239,19 @@ const Detail = () => {
         <div>
           <p style={{ fontWeight: "bold" }}>Main domain : {domain}</p>
         </div>
-        {Object.keys(headers).map((key) => (
-          <div key={key}>
-            <h3 style={{ fontSize: "25px", fontWeight: "bold" }}>{key} :</h3>
-            <ul style={{ padding: 0 }}>
-              {headers[key].map((item: any) => (
-                <li style={{ color: "white" }} key={item}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {headers &&
+          Object.keys(headers).map((key) => (
+            <div key={key}>
+              <h3 style={{ fontSize: "25px", fontWeight: "bold" }}>{key} :</h3>
+              <ul style={{ padding: 0 }}>
+                {headers[key].map((item: any) => (
+                  <li style={{ color: "white" }} key={item}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         {/* <ul> */}
         {/* map over links array and display if it startswith http */}
         {/* {links?.map((l) =>
