@@ -29,6 +29,8 @@ const Home = () => {
             tools, Try it now!
           </p>
 
+          <div style={{ visibility: "hidden" }}>hidden element</div>
+
           <SearchBar
             setLoading={setLoading}
             setEnteredDomain={setEnteredDomain}

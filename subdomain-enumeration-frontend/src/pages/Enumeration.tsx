@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import kctLogo from "../assets/kct.svg";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
-import { ReactComponent as Share } from "../assets/share.svg";
+// import { ReactComponent as Share } from "../assets/share.svg";
 import Table from "../components/Table";
 import {
   TLocalStorageState,
@@ -13,9 +13,11 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { saveAs } from "file-saver";
 import Blob from "blob";
 import copy from "../assets/copy.svg";
-import arrowup from "../assets/arrowup.svg";
+// import arrowup from "../assets/arrowup.svg";
 import tick from "../assets/tick.svg";
+import { ReactComponent as Download } from "../assets/download.svg";
 
+// import { ReactComponent as Share } from "../assets/arrowup.svg";
 export const buttonStyle = {
   border: "1.9px solid #ACC319",
   borderRadius: "27.1429px",
@@ -147,9 +149,10 @@ const Enumeration = () => {
         paddingInline: "6rem",
         paddingBlock: "4rem",
         position: "relative",
-        height: "80vh",
+        // height: "80vh",
       }}
     >
+      {/* <div> */}
       <img src={kctLogo} alt="logo" width="300px" height="300px" />
 
       <div
@@ -214,13 +217,14 @@ const Enumeration = () => {
           </li>
         </ul>
       </div>
+      {/* </div> */}
 
       <div
         style={{
           color: "white",
           height: "400px",
-          width: "300%",
-          maxWidth: "300%",
+          width: "100%",
+          // maxWidth: "300%",
           backgroundColor: "rgb(10,10,10)",
           borderRadius: "25px",
           display: "flex",
@@ -229,6 +233,7 @@ const Enumeration = () => {
           marginBlock: "auto",
           overflowY: "scroll",
           position: "relative",
+          gridColumn: "span 2",
         }}
         className="scrollbar"
       >
@@ -310,6 +315,7 @@ const Enumeration = () => {
           </div>
         )}
         {/* share button */}
+
         <div
           style={{
             position: "sticky",
@@ -331,13 +337,13 @@ const Enumeration = () => {
                 alignItems: "center",
               }}
             >
-              <Share
+              <Download
                 onClick={downloadFile}
-                fill={
-                  downloadBtn
-                    ? "#000000"
-                    : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
-                }
+                // fill={
+                // downloadBtn ? "#000000" : "white"
+                // : "invert(98%)sepia(5%)saturate(598%)hue-rotate(260deg)brightness(116%)contrast(100%)"
+                // }
+                // stroke="black"
               />
             </div>
             {/* <img src={} alt="share" style={{ cursor: "pointer"}} /> */}

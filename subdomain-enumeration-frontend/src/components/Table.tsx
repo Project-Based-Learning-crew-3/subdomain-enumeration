@@ -6,6 +6,7 @@ import {
 } from "../types/StateSubdomainsContext";
 import { Link, useNavigate } from "react-router-dom";
 import { buttonStyle, clickedStyle } from "../pages/Enumeration";
+import download from "../assets/download.svg";
 
 const Table = () => {
   const { subdomains, setSubDomains } = UseSubdomainContext();
@@ -28,6 +29,7 @@ const Table = () => {
           marginBottom: "2rem",
           display: "flex",
           gap: "1rem",
+          // gridColumn: "span 2",
         }}
       >
         <span

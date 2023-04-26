@@ -113,7 +113,7 @@ const SearchBar = ({
 
   return (
     <>
-      <div className="search-container">
+      <div>
         {/* search icon svg */}
         <input
           value={domain}

@@ -181,7 +181,7 @@ const Detail = () => {
                 <img
                   src={download}
                   alt="d"
-                  style={{ width: "16px", marginTop: "2px" }}
+                  style={{ width: "20px", marginTop: "2px" }}
                 />
               </button>
             </a>
