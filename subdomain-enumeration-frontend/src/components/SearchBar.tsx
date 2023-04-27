@@ -122,6 +122,7 @@ const SearchBar = ({
           type="text"
           placeholder="Enter a domain name"
           className="domain-input"
+          // style={{ position: "relative" }}
         />
 
         <svg

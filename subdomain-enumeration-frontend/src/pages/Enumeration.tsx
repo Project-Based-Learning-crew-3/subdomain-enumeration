@@ -290,6 +290,7 @@ const Enumeration = () => {
             </span>
           </div>
         )}
+
         {currentButton === "TEXT" && (
           <div
             style={{
@@ -302,12 +303,25 @@ const Enumeration = () => {
               lineHeight: "1.75",
             }}
           >
-            <img
-              src={copy}
-              alt="copy"
-              className="copy"
-              onClick={() => copyTextToClipboard("TEXT")}
-            />
+            {isCopied ? (
+              <>
+                <img src={tick} alt="tick" className="tick" />
+              </>
+            ) : (
+              <img
+                src={copy}
+                alt="copy"
+                className="copy"
+                onClick={() => {
+                  setIsCopied(true);
+
+                  setTimeout(() => {
+                    setIsCopied(false);
+                  }, 2000);
+                  copyTextToClipboard("TEXT");
+                }}
+              />
+            )}
 
             {subdomains?.map((data, i) => (
               <div key={i}>{data.subdomain}</div>

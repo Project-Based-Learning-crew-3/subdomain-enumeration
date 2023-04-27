@@ -127,6 +127,7 @@ svg {
     margin-top: 0.1rem;
     margin-right: 1.5rem;
   }
+ 
   .search {
     position: absolute;
     top: 13%;
@@ -134,10 +135,10 @@ svg {
   }
   .search-container {
     margin-top: 1rem;
-    position: relative !important;
+    position: relative ;
   }
   input {
-    font-size: large;
+    font-size: 20px;
     width: 290px;
     height: 55.61px;
   }
