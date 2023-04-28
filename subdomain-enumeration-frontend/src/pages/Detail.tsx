@@ -39,6 +39,7 @@ const Detail = () => {
     getHeaders(reqSubDomain?.subdomain || "")
       .then((res) => {
         setHeaders(res?.data?.headers);
+        console.log(headers);
       })
       .catch((err) => {
         console.log(err);
@@ -239,10 +240,11 @@ const Detail = () => {
         <div>
           <p style={{ fontWeight: "bold" }}>Main domain : {domain}</p>
         </div>
+        <span style={{ fontWeight: "bold" }}>Response Headers:</span>
         {headers &&
           Object.keys(headers).map((key) => (
             <div key={key}>
-              <h3 style={{ fontSize: "25px", fontWeight: "bold" }}>{key} :</h3>
+              <h2 style={{ fontSize: "25px", fontWeight: "bold" }}>{key} :</h2>
               <ul style={{ padding: 0 }}>
                 {headers[key].map((item: any) => (
                   <li style={{ color: "white" }} key={item}>

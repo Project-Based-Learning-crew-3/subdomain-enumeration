@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLogo } from "../helpers/getCompanyLogo";
+// import { getLogo } from "../helpers/getCompanyLogo";
 import { getSubdomains } from "../api/getsubdomains";
 import { UseSubdomainContext } from "../context/UseSubdomainContext";
 import { TLocalStorageState } from "../types/StateSubdomainsContext";
@@ -68,7 +68,7 @@ const SearchBar = ({
 
       if (response.status === 200) {
         if (domain !== "") {
-          getLogo(domain);
+          // getLogo(domain);
           setLoading(false);
           let Existingdata = JSON.parse(
             localStorage?.getItem("searchedsubdomains")!

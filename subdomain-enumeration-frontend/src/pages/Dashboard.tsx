@@ -11,6 +11,7 @@ import { VictoryPie } from "victory";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { subdomains, setSubDomains } = UseSubdomainContext();
+  const [domain, setDomain] = useState("");
   const [statusCode, setStatusCode] = useState({
     success: 0,
     userErr: 0,
@@ -25,6 +26,8 @@ const Dashboard = () => {
       localStorage?.getItem("searchedsubdomains")!
     );
     console.log(data);
+    setDomain(data[data?.length - 1]?.domain);
+    console.log(domain);
     if (data && subdomains?.length === 0) {
       setSubDomains(data[data?.length - 1]?.subdomains);
     }
@@ -127,6 +130,19 @@ const Dashboard = () => {
               />
               {/* <img src={pieChart} alt="" /> */}
             </div>
+            <p
+              style={{
+                fontFamily: "Raleway",
+                fontSize: "1rem",
+                marginTop: "5rem",
+              }}
+            >
+              Total number of enumerated subdomains is {subdomains?.length}.
+              <br />
+              Number of 2xx is {statusCode.success}, number of 4xx is{" "}
+              {statusCode.userErr}
+              <br /> and number of 5xx is {statusCode.serverErr}
+            </p>
           </div>
 
           <div className="StatusCode">
