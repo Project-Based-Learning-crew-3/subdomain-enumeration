@@ -89,7 +89,7 @@ const Detail = () => {
       console.log("came to else block");
       axios
         .get(
-          `https://api.apiflash.com/v1/urltoimage?access_key=50b816ea01e643d096c4e7948539b372&wait_until=page_loaded&url=https://${reqSubDomain?.subdomain}`,
+          `https://api.apiflash.com/v1/urltoimage?access_key=${REACT_APP_ACCESS_KEY}&wait_until=page_loaded&url=https://${reqSubDomain?.subdomain}`,
           { responseType: "arraybuffer" }
         )
         .then((response) => {
