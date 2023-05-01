@@ -133,8 +133,9 @@ const Dashboard = () => {
             <p
               style={{
                 fontFamily: "Raleway",
-                fontSize: "1rem",
+                fontSize: "1.25rem",
                 marginTop: "5rem",
+                lineHeight: "1.5",
               }}
             >
               Total number of enumerated subdomains is {subdomains?.length}.

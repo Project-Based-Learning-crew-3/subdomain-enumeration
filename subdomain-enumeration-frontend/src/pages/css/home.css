@@ -50,7 +50,7 @@ input {
   height: 60.61px;
   padding-left: 20px;
   color: white;
-  font-size: x-large;
+  font-size: 20px;
   font-family: "Raleway", sans-serif;
   animation: 1s ease-in-out 0s 1 fadeIn;
 }
