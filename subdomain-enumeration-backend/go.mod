@@ -6,9 +6,9 @@ require (
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/chromedp/cdproto v0.0.0-20230329100754-6125fc8d7142
 	github.com/chromedp/chromedp v0.9.1
-	github.com/gofiber/fiber/v2 v2.49.2
+	github.com/gofiber/fiber/v2 v2.50.0
 	github.com/projectdiscovery/subfinder/v2 v2.5.5
-	github.com/valyala/fasthttp v1.49.0
+	github.com/valyala/fasthttp v1.50.0
 )
 
 require (
