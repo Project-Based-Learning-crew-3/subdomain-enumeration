@@ -14,7 +14,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/react-lazy-load-image-component": "^1.5.3",
-    "axios": "^1.7.4",
+    "axios": "^1.8.2",
     "blob": "^0.1.0",
     "file-saver": "^2.0.5",
     "lottie-react": "^2.4.0",
