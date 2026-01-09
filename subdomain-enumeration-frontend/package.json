@@ -56,6 +56,6 @@
     "@types/file-saver": "^2.0.5",
     "@types/node": "^18.14.0",
     "@types/react-custom-scrollbars": "^4.0.10",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.30.3"
   }
 }
